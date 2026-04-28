@@ -1,0 +1,17 @@
+{
+  "method": "full_cascade",
+  "structural_cascade_accuracy": 0.7065989489953668,
+  "semantic_edge_precision": 0.0007555723460521345,
+  "drift_cascade_accuracy": 0.0,
+  "false_invalidation_rate": 0.44000000000000006,
+  "recommendation_correctness": 0.0,
+  "flat_memory_accuracy": 0.0,
+  "improvement_over_flat": 0.0,
+  "embedding_distance_above_03": true,
+  "mean_cross_embedding_distance": 0.6419345140457153,
+  "semantic_bridge_method_precision": {
+    "embedding": 0.0007555723460521345,
+    "llm": 0.0,
+    "behavioral": 0.0
+  }
+}

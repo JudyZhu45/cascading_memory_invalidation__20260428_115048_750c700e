@@ -1,0 +1,15 @@
+\begin{table}[h]
+\centering
+\caption{Datasets used in this work. \locomo provides real-world multi-session dialogues for structural cascade evaluation. \horizonbench provides controlled preference evolution items with known distractors.}
+\label{tab:datasets}
+\resizebox{0.95\textwidth}{!}{%
+\begin{tabular}{@{}llccp{5cm}@{}}
+\toprule
+\textbf{Dataset} & \textbf{Source} & \textbf{Size} & \textbf{Splits Used} & \textbf{Role} \\
+\midrule
+\textsc{LoCoMo} & Aman279/Locomo (HuggingFace) & 35 dialogues, 65--691 turns & 15 dialogues & Location-shift detection; structural cascade evaluation \\
+\textsc{HorizonBench} & stellalisy/HorizonBench & 4,245 MCQ items (2,484 evolved) & 227 evolved + 100 static & Preference drift cascade evaluation \\
+\bottomrule
+\end{tabular}
+}
+\end{table}

@@ -1,0 +1,27 @@
+{
+  "success": true,
+  "stages": {
+    "resource_finder": {
+      "success": true,
+      "completion_marker": "/workspaces/cascading_memory_invalidation__20260428_115048_750c700e/.resource_finder_complete",
+      "outputs": {
+        "literature_review": "/workspaces/cascading_memory_invalidation__20260428_115048_750c700e/literature_review.md",
+        "resources_catalog": "/workspaces/cascading_memory_invalidation__20260428_115048_750c700e/resources.md",
+        "papers_dir": "/workspaces/cascading_memory_invalidation__20260428_115048_750c700e/papers",
+        "datasets_dir": "/workspaces/cascading_memory_invalidation__20260428_115048_750c700e/datasets",
+        "code_dir": "/workspaces/cascading_memory_invalidation__20260428_115048_750c700e/code"
+      },
+      "log_file": "/workspaces/cascading_memory_invalidation__20260428_115048_750c700e/logs/resource_finder_claude.log",
+      "transcript_file": "/workspaces/cascading_memory_invalidation__20260428_115048_750c700e/logs/resource_finder_claude_transcript.jsonl",
+      "elapsed_time": 1263.2438583374023
+    },
+    "experiment_runner": {
+      "success": true,
+      "return_code": 0,
+      "elapsed_time": 4075.0912063121796,
+      "log_file": "/workspaces/cascading_memory_invalidation__20260428_115048_750c700e/logs/execution_claude.log",
+      "transcript_file": "/workspaces/cascading_memory_invalidation__20260428_115048_750c700e/logs/execution_claude_transcript.jsonl"
+    }
+  },
+  "work_dir": "/workspaces/cascading_memory_invalidation__20260428_115048_750c700e"
+}

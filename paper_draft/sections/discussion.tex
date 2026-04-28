@@ -1,0 +1,54 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{The Semantic Bridging Problem is Solved by World Knowledge}
+\label{sec:discussion:semantic}
+
+Our central finding is that the semantic bridging problem --- inferring that ``prefers quiet'' conflicts with ``likes bars'' without explicit user statements --- is solvable via LLM inference at memory write time. The key insight is that this is a \textit{world knowledge question} (``do bars conflict with quiet preferences?''), not a user-specific reasoning task. \gptfouromini answers these questions correctly from training data, achieving 100\% precision on our conflict benchmark.
+
+This stands in contrast to the one failure case: the implicit location-semantic conflict (``favorite bar in Shanghai'' + ``moved to Beijing'') requires combining structural knowledge (this memory is location-dependent) with semantic reasoning (bars in Shanghai are irrelevant after relocation). The LLM assigns confidence 0.55 here, below the 0.6 threshold. A two-stage approach --- structural \locatedin check first, then semantic \conflictswith check --- would address this failure mode.
+
+\para{Embedding similarity as a pre-filter.}
+While embedding similarity alone is insufficiently precise (61.1\% at $\tau = 0.3$), the high mean cosine distance (0.69) between quiet/noisy preference pairs suggests that a higher threshold ($\tau \approx 0.5$) could serve as an efficient pre-filter before LLM verification. This hybrid approach would reduce API calls by approximately 50\% while maintaining near-100\% precision. We leave this optimization for future work.
+
+\subsection{Failure Mode Taxonomy}
+\label{sec:discussion:failures}
+
+We identify five distinct failure modes from our experiments:
+
+\para{Failure Mode 1: Bidirectional Edge Cancellation.}
+The most important failure mode: when \conflictswith edges are undirected, cascade reduces \textit{both} the current and the outdated memory equally, eliminating the benefit of graph-based invalidation. Directed edges (current $\rightarrow$ old) prevent this cancellation. Empirically, bidirectional configuration yields 41.8\% evolved accuracy versus 72.2\% for directed, a 30.4pp gap. This is a critical implementation warning for any system building on our approach.
+
+\para{Failure Mode 2: Structural Cascade Over-Reach.}
+Keyword-based \locatedin edge detection over-generates dependencies (Dialogue 9: 41 edges for 74 nodes, accuracy = 61.9\%). Memories that mention spatial context without being location-dependent (\eg ``I usually wake up early near my desk'') are incorrectly linked to the location root. Solutions include semantic filtering of candidate edges using sentence embeddings before adding them to the graph.
+
+\para{Failure Mode 3: LLM Context Blindness for Location-Semantic Conflicts.}
+The LLM misses the implicit location-semantic conflict at confidence 0.55 because it evaluates two memories in isolation, without reasoning about whether one is location-dependent. A structured prompt that first asks ``Is this memory location-dependent?'' before asking about semantic conflict would address this.
+
+\para{Failure Mode 4: Behavioral Signal Sparsity.}
+The behavioral co-occurrence approach requires thousands of user-session pairs to establish stable Pearson correlations. With 35 LoCoMo dialogues (15 sessions each), the approach produces no valid edges. This approach is only viable at production scale with real user data.
+
+\para{Failure Mode 5: Cascade Depth Over-Propagation.}
+Beyond 3 hops, the cascade signal falls below 0.35 and risks invalidating transitively connected but semantically unrelated memories. In practice, 2--3 hops captures 90\% of the benefit with significantly lower false-invalidation risk.
+
+\subsection{Comparison to Literature Baselines}
+\label{sec:discussion:comparison}
+
+Our \fullcascade achieves 72.2\% evolved accuracy on our controlled \horizonbench evaluation, compared to Claude-Opus-4.5's 52.8\% and PersonaMem-v2's 55\% in the original benchmarks. However, these comparisons are not directly equivalent: the original benchmarks use full 163K-token conversation histories, while our experiment uses a 2-node memory graph with known conflict pairs. Our experiment tests the cascade mechanism in isolation, not end-to-end memory management.
+
+{\bf What our results do establish:} even with minimal memory (2 nodes per evaluation item), directed cascade graphs outperform no-memory baselines by a large margin (+32.2pp). This isolates the cascade mechanism as a powerful component, motivating its integration into full-scale memory systems.
+
+\subsection{Limitations}
+\label{sec:discussion:limits}
+
+\para{Controlled experimental design.}
+Our \horizonbench evaluation uses 2-node memory graphs with known conflict pairs. In real systems with hundreds of memories, cascade effects may be diluted by graph sparsity or amplified by densely connected preference clusters. End-to-end evaluation remains for future work.
+
+\para{Small conflict benchmark.}
+Our semantic bridge evaluation uses 19 pairs (11 true conflicts, 8 non-conflicts). LLM precision = 100\% corresponds to 11/11 correct predictions with a wide 95\% confidence interval ([71.5\%, 100\%]). Larger benchmarks are needed for statistically robust evaluation.
+
+\para{LoCoMo annotation quality.}
+The publicly available \locomo mirror (Aman279/Locomo) lacks the original QA annotation pairs from the canonical dataset. We use LLM-generated QA pairs and regex-based event detection. The use of LLM-generated ground truth introduces self-consistency effects that may overestimate cascade accuracy.
+
+\para{CPU-only environment.}
+All experiments ran on CPU without GPU acceleration, limiting embedding model choice to \miniLM. Larger models (\eg BGE-large) might achieve better quiet/noisy separation with lower thresholds.

@@ -1,0 +1,692 @@
+{
+  "metadata": {
+    "version": "v2",
+    "seed": 42,
+    "model": "gpt-4o-mini",
+    "timestamp": "2026-04-28T12:49:15.670905"
+  },
+  "embedding_distance_test": {
+    "result": {
+      "mean_cross_distance": 0.6898362636566162,
+      "min_cross_distance": 0.34580689668655396,
+      "max_cross_distance": 0.926324188709259,
+      "std_cross_distance": 0.12856130301952362,
+      "mean_within_quiet_distance": 0.5442548394203186,
+      "fraction_above_threshold_03": 1.0,
+      "fraction_above_threshold_05": 0.96875,
+      "h2a_supported": true
+    }
+  },
+  "structural_cascade": {
+    "n_dialogues": 15,
+    "structural_cascade_accuracy": 0.8168145533236016,
+    "structural_cascade_precision": 0.8130578659072627,
+    "structural_cascade_recall": 0.6746357630847623,
+    "structural_cascade_f1": 0.6877095642747446,
+    "avg_n_nodes": 68.66666666666667,
+    "avg_n_located_in_edges": 17.266666666666666,
+    "per_dialogue": [
+      {
+        "precision": 1.0,
+        "recall": 0.5625,
+        "f1": 0.72,
+        "accuracy": 0.9041095890410958,
+        "tp": 9,
+        "fp": 0,
+        "fn": 7,
+        "tn": 57,
+        "n_gold_invalidated": 16,
+        "n_predicted_invalidated": 9,
+        "dialogue_id": 0,
+        "n_nodes": 74,
+        "n_located_in_edges": 9,
+        "n_location_dependent": 16,
+        "n_cascade_affected": 9
+      },
+      {
+        "precision": 0.4642857142857143,
+        "recall": 0.9285714285714286,
+        "f1": 0.6190476190476191,
+        "accuracy": 0.7808219178082192,
+        "tp": 13,
+        "fp": 15,
+        "fn": 1,
+        "tn": 44,
+        "n_gold_invalidated": 14,
+        "n_predicted_invalidated": 28,
+        "dialogue_id": 1,
+        "n_nodes": 74,
+        "n_located_in_edges": 28,
+        "n_location_dependent": 14,
+        "n_cascade_affected": 28
+      },
+      {
+        "precision": 0.4146341463414634,
+        "recall": 0.8947368421052632,
+        "f1": 0.5666666666666667,
+        "accuracy": 0.6438356164383562,
+        "tp": 17,
+        "fp": 24,
+        "fn": 2,
+        "tn": 30,
+        "n_gold_invalidated": 19,
+        "n_predicted_invalidated": 41,
+        "dialogue_id": 2,
+        "n_nodes": 74,
+        "n_located_in_edges": 41,
+        "n_location_dependent": 19,
+        "n_cascade_affected": 41
+      },
+      {
+        "precision": 0.8695652173913043,
+        "recall": 0.7692307692307693,
+        "f1": 0.8163265306122449,
+        "accuracy": 0.9142857142857143,
+        "tp": 20,
+        "fp": 3,
+        "fn": 6,
+        "tn": 76,
+        "n_gold_invalidated": 26,
+        "n_predicted_invalidated": 23,
+        "dialogue_id": 3,
+        "n_nodes": 106,
+        "n_located_in_edges": 23,
+        "n_location_dependent": 26,
+        "n_cascade_affected": 23
+      },
+      {
+        "precision": 1.0,
+        "recall": 0.5333333333333333,
+        "f1": 0.6956521739130436,
+        "accuracy": 0.72,
+        "tp": 8,
+        "fp": 0,
+        "fn": 7,
+        "tn": 10,
+        "n_gold_invalidated": 15,
+        "n_predicted_invalidated": 8,
+        "dialogue_id": 4,
+        "n_nodes": 26,
+        "n_located_in_edges": 8,
+        "n_location_dependent": 15,
+        "n_cascade_affected": 8
+      },
+      {
+        "precision": 0.9,
+        "recall": 0.391304347826087,
+        "f1": 0.5454545454545454,
+        "accuracy": 0.6938775510204082,
+        "tp": 9,
+        "fp": 1,
+        "fn": 14,
+        "tn": 25,
+        "n_gold_invalidated": 23,
+        "n_predicted_invalidated": 10,
+        "dialogue_id": 5,
+        "n_nodes": 50,
+        "n_located_in_edges": 10,
+        "n_location_dependent": 23,
+        "n_cascade_affected": 10
+      },
+      {
+        "precision": 0.9444444444444444,
+        "recall": 0.5862068965517241,
+        "f1": 0.7234042553191489,
+        "accuracy": 0.8761904761904762,
+        "tp": 17,
+        "fp": 1,
+        "fn": 12,
+        "tn": 75,
+        "n_gold_invalidated": 29,
+        "n_predicted_invalidated": 18,
+        "dialogue_id": 6,
+        "n_nodes": 106,
+        "n_located_in_edges": 18,
+        "n_location_dependent": 29,
+        "n_cascade_affected": 18
+      },
+      {
+        "precision": 0.7692307692307693,
+        "recall": 0.7142857142857143,
+        "f1": 0.7407407407407408,
+        "accuracy": 0.8923076923076924,
+        "tp": 10,
+        "fp": 3,
+        "fn": 4,
+        "tn": 48,
+        "n_gold_invalidated": 14,
+        "n_predicted_invalidated": 13,
+        "dialogue_id": 7,
+        "n_nodes": 66,
+        "n_located_in_edges": 13,
+        "n_location_dependent": 14,
+        "n_cascade_affected": 13
+      },
+      {
+        "precision": 1.0,
+        "recall": 0.3076923076923077,
+        "f1": 0.47058823529411764,
+        "accuracy": 0.8163265306122449,
+        "tp": 4,
+        "fp": 0,
+        "fn": 9,
+        "tn": 36,
+        "n_gold_invalidated": 13,
+        "n_predicted_invalidated": 4,
+        "dialogue_id": 8,
+        "n_nodes": 50,
+        "n_located_in_edges": 4,
+        "n_location_dependent": 13,
+        "n_cascade_affected": 4
+      },
+      {
+        "precision": 0.37735849056603776,
+        "recall": 0.7407407407407407,
+        "f1": 0.5,
+        "accuracy": 0.6190476190476191,
+        "tp": 20,
+        "fp": 33,
+        "fn": 7,
+        "tn": 45,
+        "n_gold_invalidated": 27,
+        "n_predicted_invalidated": 53,
+        "dialogue_id": 9,
+        "n_nodes": 106,
+        "n_located_in_edges": 53,
+        "n_location_dependent": 27,
+        "n_cascade_affected": 53
+      },
+      {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "accuracy": 1.0,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "tn": 8,
+        "n_gold_invalidated": 1,
+        "n_predicted_invalidated": 1,
+        "dialogue_id": 10,
+        "n_nodes": 10,
+        "n_located_in_edges": 1,
+        "n_location_dependent": 1,
+        "n_cascade_affected": 1
+      },
+      {
+        "precision": 0.7777777777777778,
+        "recall": 0.2916666666666667,
+        "f1": 0.42424242424242425,
+        "accuracy": 0.6122448979591837,
+        "tp": 7,
+        "fp": 2,
+        "fn": 17,
+        "tn": 23,
+        "n_gold_invalidated": 24,
+        "n_predicted_invalidated": 9,
+        "dialogue_id": 11,
+        "n_nodes": 50,
+        "n_located_in_edges": 9,
+        "n_location_dependent": 24,
+        "n_cascade_affected": 9
+      },
+      {
+        "precision": 1.0,
+        "recall": 0.8571428571428571,
+        "f1": 0.923076923076923,
+        "accuracy": 0.979381443298969,
+        "tp": 12,
+        "fp": 0,
+        "fn": 2,
+        "tn": 83,
+        "n_gold_invalidated": 14,
+        "n_predicted_invalidated": 12,
+        "dialogue_id": 12,
+        "n_nodes": 98,
+        "n_located_in_edges": 12,
+        "n_location_dependent": 14,
+        "n_cascade_affected": 12
+      },
+      {
+        "precision": 0.9285714285714286,
+        "recall": 0.6190476190476191,
+        "f1": 0.742857142857143,
+        "accuracy": 0.8767123287671232,
+        "tp": 13,
+        "fp": 1,
+        "fn": 8,
+        "tn": 51,
+        "n_gold_invalidated": 21,
+        "n_predicted_invalidated": 14,
+        "dialogue_id": 13,
+        "n_nodes": 74,
+        "n_located_in_edges": 14,
+        "n_location_dependent": 21,
+        "n_cascade_affected": 14
+      },
+      {
+        "precision": 0.75,
+        "recall": 0.9230769230769231,
+        "f1": 0.8275862068965517,
+        "accuracy": 0.9230769230769231,
+        "tp": 12,
+        "fp": 4,
+        "fn": 1,
+        "tn": 48,
+        "n_gold_invalidated": 13,
+        "n_predicted_invalidated": 16,
+        "dialogue_id": 14,
+        "n_nodes": 66,
+        "n_located_in_edges": 16,
+        "n_location_dependent": 13,
+        "n_cascade_affected": 16
+      }
+    ]
+  },
+  "semantic_bridge": {
+    "n_pairs": 19,
+    "n_positive": 11,
+    "n_negative": 8,
+    "embedding": {
+      "method": "embedding",
+      "accuracy": 0.631578947368421,
+      "precision": 0.6111111111111112,
+      "recall": 1.0,
+      "f1": 0.7586206896551725,
+      "tp": 11,
+      "fp": 7,
+      "fn": 0,
+      "avg_dist_conflict": 0.6625259708274495,
+      "avg_dist_nonconflict": 0.45534060150384903,
+      "threshold_used": 0.3,
+      "per_pair": [
+        {
+          "content_a": "I prefer quiet evenings at home and find bars draining",
+          "content_b": "I love going to bars and clubs",
+          "gold": true,
+          "cosine_distance": 0.40878593921661377,
+          "predicted_conflict": true,
+          "correct": true
+        },
+        {
+          "content_a": "I've been enjoying peaceful solitude lately",
+          "content_b": "I enjoy loud nightlife and crowded parties",
+          "gold": true,
+          "cosine_distance": 0.6427994966506958,
+          "predicted_conflict": true,
+          "correct": true
+        },
+        {
+          "content_a": "I need calm and quiet to recharge my energy",
+          "content_b": "I love the energy of crowded nightclubs",
+          "gold": true,
+          "cosine_distance": 0.6531938016414642,
+          "predicted_conflict": true,
+          "correct": true
+        },
+        {
+          "content_a": "I prefer staying home and reading quietly",
+          "content_b": "I like going out to loud social gatherings",
+          "gold": true,
+          "cosine_distance": 0.5416721105575562,
+          "predicted_conflict": true,
+          "correct": true
+        },
+        {
+          "content_a": "I've become more introverted and prefer silence",
+          "content_b": "I enjoy rowdy bars and social events",
+          "gold": true,
+          "cosine_distance": 0.6980097889900208,
+          "predicted_conflict": true,
+          "correct": true
+        },
+        {
+          "content_a": "I love tranquil hikes in nature by myself",
+          "content_b": "I prefer busy nightclubs and loud music venues",
+          "gold": true,
+          "cosine_distance": 0.7616508305072784,
+          "predicted_conflict": true,
+          "correct": true
+        },
+        {
+          "content_a": "I find noise and crowds exhausting",
+          "content_b": "I love karaoke nights at packed bars",
+          "gold": true,
+          "cosine_distance": 0.6411951184272766,
+          "predicted_conflict": true,
+          "correct": true
+        },
+        {
+          "content_a": "I meditate daily and value inner peace",
+          "content_b": "I love wild parties and bar-hopping",
+          "gold": true,
+          "cosine_distance": 0.9328315258026123,
+          "predicted_conflict": true,
+          "correct": true
+        },
+        {
+          "content_a": "I prefer hiking in the morning",
+          "content_b": "I enjoy hiking in the evening",
+          "gold": false,
+          "cosine_distance": 0.2035353183746338,
+          "predicted_conflict": false,
+          "correct": true
+        },
+        {
+          "content_a": "I like jazz music",
+          "content_b": "I enjoy classical music",
+          "gold": false,
+          "cosine_distance": 0.33359837532043457,
+          "predicted_conflict": true,
+          "correct": false
+        },
+        {
+          "content_a": "I prefer tea over coffee",
+          "content_b": "I enjoy hot beverages in the morning",
+          "gold": false,
+          "cosine_distance": 0.4956587553024292,
+          "predicted_conflict": true,
+          "correct": false
+        },
+        {
+          "content_a": "I love cooking Italian food",
+          "content_b": "I enjoy trying new restaurants",
+          "gold": false,
+          "cosine_distance": 0.46615922451019287,
+          "predicted_conflict": true,
+          "correct": false
+        },
+        {
+          "content_a": "I like reading science fiction",
+          "content_b": "I enjoy fantasy novels too",
+          "gold": false,
+          "cosine_distance": 0.41526180505752563,
+          "predicted_conflict": true,
+          "correct": false
+        },
+        {
+          "content_a": "I prefer cycling for exercise",
+          "content_b": "I enjoy swimming at the pool",
+          "gold": false,
+          "cosine_distance": 0.6007559895515442,
+          "predicted_conflict": true,
+          "correct": false
+        },
+        {
+          "content_a": "I work from home",
+          "content_b": "I like remote work arrangements",
+          "gold": false,
+          "cosine_distance": 0.588555097579956,
+          "predicted_conflict": true,
+          "correct": false
+        },
+        {
+          "content_a": "I have two dogs",
+          "content_b": "I love animals and pets",
+          "gold": false,
+          "cosine_distance": 0.5392002463340759,
+          "predicted_conflict": true,
+          "correct": false
+        },
+        {
+          "content_a": "My favorite bar is The Blue Moon in Shanghai",
+          "content_b": "I moved to Beijing last month",
+          "gold": true,
+          "cosine_distance": 0.6260125041007996,
+          "predicted_conflict": true,
+          "correct": true
+        },
+        {
+          "content_a": "I always eat at my favorite restaurant in New York",
+          "content_b": "I've relocated to London",
+          "gold": true,
+          "cosine_distance": 0.7093943357467651,
+          "predicted_conflict": true,
+          "correct": true
+        },
+        {
+          "content_a": "I go to the local gym on Main Street",
+          "content_b": "I moved to a different neighborhood",
+          "gold": true,
+          "cosine_distance": 0.6722402274608612,
+          "predicted_conflict": true,
+          "correct": true
+        }
+      ]
+    },
+    "llm": {
+      "method": "llm",
+      "accuracy": 0.9473684210526315,
+      "precision": 1.0,
+      "recall": 0.9090909090909091,
+      "f1": 0.9523809523809523,
+      "tp": 10,
+      "fp": 0,
+      "fn": 1,
+      "avg_confidence": 0.8894736842105262,
+      "per_pair": [
+        {
+          "content_a": "I prefer quiet evenings at home and find bars draining",
+          "content_b": "I love going to bars and clubs",
+          "gold": true,
+          "predicted_conflict": true,
+          "confidence": 0.9,
+          "explanation": "The two memories express opposing preferences regarding social environments, making it highly unlikely for both to be true simultaneously.",
+          "correct": true
+        },
+        {
+          "content_a": "I've been enjoying peaceful solitude lately",
+          "content_b": "I enjoy loud nightlife and crowded parties",
+          "gold": true,
+          "predicted_conflict": true,
+          "confidence": 0.9,
+          "explanation": "The enjoyment of peaceful solitude is fundamentally at odds with enjoying loud nightlife and crowded parties, as they represent opposing preferences for social environments.",
+          "correct": true
+        },
+        {
+          "content_a": "I need calm and quiet to recharge my energy",
+          "content_b": "I love the energy of crowded nightclubs",
+          "gold": true,
+          "predicted_conflict": true,
+          "confidence": 0.9,
+          "explanation": "The need for calm and quiet to recharge is directly opposed to the enjoyment of the energy of crowded nightclubs, as the former suggests a preference for solitude while the latter implies a preference for social and noisy environments.",
+          "correct": true
+        },
+        {
+          "content_a": "I prefer staying home and reading quietly",
+          "content_b": "I like going out to loud social gatherings",
+          "gold": true,
+          "predicted_conflict": true,
+          "confidence": 0.9,
+          "explanation": "The preferences for staying home to read quietly and for going out to loud social gatherings are fundamentally contradictory, as they represent opposing desires for solitude versus social interaction.",
+          "correct": true
+        },
+        {
+          "content_a": "I've become more introverted and prefer silence",
+          "content_b": "I enjoy rowdy bars and social events",
+          "gold": true,
+          "predicted_conflict": true,
+          "confidence": 0.9,
+          "explanation": "A person who is more introverted and prefers silence would likely find rowdy bars and social events undesirable, making these two memories contradictory.",
+          "correct": true
+        },
+        {
+          "content_a": "I love tranquil hikes in nature by myself",
+          "content_b": "I prefer busy nightclubs and loud music venues",
+          "gold": true,
+          "predicted_conflict": true,
+          "confidence": 0.9,
+          "explanation": "The preferences for tranquil hikes in nature and busy nightclubs represent fundamentally different environments and experiences, suggesting a strong inconsistency in personal preferences.",
+          "correct": true
+        },
+        {
+          "content_a": "I find noise and crowds exhausting",
+          "content_b": "I love karaoke nights at packed bars",
+          "gold": true,
+          "predicted_conflict": true,
+          "confidence": 0.8,
+          "explanation": "Finding noise and crowds exhausting suggests a dislike for such environments, which strongly undermines the enjoyment of karaoke nights at packed bars.",
+          "correct": true
+        },
+        {
+          "content_a": "I meditate daily and value inner peace",
+          "content_b": "I love wild parties and bar-hopping",
+          "gold": true,
+          "predicted_conflict": true,
+          "confidence": 0.8,
+          "explanation": "The values of daily meditation and inner peace generally contrast with the chaotic and social nature of wild parties and bar-hopping, suggesting a strong inconsistency in lifestyle preferences.",
+          "correct": true
+        },
+        {
+          "content_a": "I prefer hiking in the morning",
+          "content_b": "I enjoy hiking in the evening",
+          "gold": false,
+          "predicted_conflict": false,
+          "confidence": 0.9,
+          "explanation": "A person can prefer hiking in the morning while also enjoying hiking in the evening; these preferences are not mutually exclusive.",
+          "correct": true
+        },
+        {
+          "content_a": "I like jazz music",
+          "content_b": "I enjoy classical music",
+          "gold": false,
+          "predicted_conflict": false,
+          "confidence": 0.9,
+          "explanation": "A reasonable person can enjoy both jazz and classical music simultaneously; these preferences do not contradict each other.",
+          "correct": true
+        },
+        {
+          "content_a": "I prefer tea over coffee",
+          "content_b": "I enjoy hot beverages in the morning",
+          "gold": false,
+          "predicted_conflict": false,
+          "confidence": 0.9,
+          "explanation": "Both memories can coexist; preferring tea does not negate the enjoyment of hot beverages.",
+          "correct": true
+        },
+        {
+          "content_a": "I love cooking Italian food",
+          "content_b": "I enjoy trying new restaurants",
+          "gold": false,
+          "predicted_conflict": false,
+          "confidence": 0.9,
+          "explanation": "Both memories can coexist; loving to cook Italian food does not contradict enjoying trying new restaurants.",
+          "correct": true
+        },
+        {
+          "content_a": "I like reading science fiction",
+          "content_b": "I enjoy fantasy novels too",
+          "gold": false,
+          "predicted_conflict": false,
+          "confidence": 0.9,
+          "explanation": "Both memories express a preference for different genres of literature, which can coexist without contradiction.",
+          "correct": true
+        },
+        {
+          "content_a": "I prefer cycling for exercise",
+          "content_b": "I enjoy swimming at the pool",
+          "gold": false,
+          "predicted_conflict": false,
+          "confidence": 0.9,
+          "explanation": "Both memories express different preferences for exercise activities and do not contradict each other.",
+          "correct": true
+        },
+        {
+          "content_a": "I work from home",
+          "content_b": "I like remote work arrangements",
+          "gold": false,
+          "predicted_conflict": false,
+          "confidence": 0.9,
+          "explanation": "Both memories can coexist; working from home is a type of remote work arrangement, and liking remote work does not contradict working from home.",
+          "correct": true
+        },
+        {
+          "content_a": "I have two dogs",
+          "content_b": "I love animals and pets",
+          "gold": false,
+          "predicted_conflict": false,
+          "confidence": 0.9,
+          "explanation": "Both memories can coexist without contradiction; loving animals and pets does not conflict with having two dogs.",
+          "correct": true
+        },
+        {
+          "content_a": "My favorite bar is The Blue Moon in Shanghai",
+          "content_b": "I moved to Beijing last month",
+          "gold": true,
+          "predicted_conflict": false,
+          "confidence": 0.9,
+          "explanation": "A person can have a favorite bar in one city while living in another city; these memories do not contradict each other.",
+          "correct": false
+        },
+        {
+          "content_a": "I always eat at my favorite restaurant in New York",
+          "content_b": "I've relocated to London",
+          "gold": true,
+          "predicted_conflict": true,
+          "confidence": 0.9,
+          "explanation": "If the person has relocated to London, it is unlikely they can always eat at their favorite restaurant in New York, creating a strong inconsistency.",
+          "correct": true
+        },
+        {
+          "content_a": "I go to the local gym on Main Street",
+          "content_b": "I moved to a different neighborhood",
+          "gold": true,
+          "predicted_conflict": true,
+          "confidence": 0.9,
+          "explanation": "If the person moved to a different neighborhood, it is likely that they no longer go to the local gym on Main Street, creating a strong inconsistency.",
+          "correct": true
+        }
+      ]
+    }
+  },
+  "drift_cascade": {
+    "flat": {
+      "method": "flat",
+      "accuracy": 0.0,
+      "false_invalidation_rate": 0.0,
+      "n_total": 0,
+      "n_correct": 0
+    },
+    "recency_decay": {
+      "method": "recency_decay",
+      "accuracy": 0.0,
+      "false_invalidation_rate": 0.0,
+      "n_total": 0,
+      "n_correct": 0
+    },
+    "1hop_cascade": {
+      "method": "1hop_cascade",
+      "accuracy": 0.0,
+      "false_invalidation_rate": 0.0,
+      "n_total": 0,
+      "n_correct": 0
+    },
+    "full_cascade": {
+      "method": "full_cascade",
+      "accuracy": 0.0,
+      "false_invalidation_rate": 0.0,
+      "n_total": 0,
+      "n_correct": 0
+    },
+    "improvement_full_vs_flat": 0.0,
+    "h3_supported": false
+  },
+  "threshold_curve": {
+    "signal_thresholds": [
+      1,
+      2,
+      3,
+      5,
+      8,
+      10
+    ],
+    "detection_rates": [
+      0.9142857142857143,
+      0.8857142857142857,
+      0.8285714285714286,
+      0.6285714285714286,
+      0.5142857142857142,
+      0.37142857142857144
+    ]
+  }
+}

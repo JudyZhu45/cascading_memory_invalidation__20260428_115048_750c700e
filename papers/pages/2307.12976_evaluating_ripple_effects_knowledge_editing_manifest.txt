@@ -1,0 +1,10 @@
+PDF: papers/2307.12976_evaluating_ripple_effects_knowledge_editing.pdf
+Total pages: 15
+Pages per chunk: 3
+
+Chunks:
+  2307.12976_evaluating_ripple_effects_knowledge_editing_chunk_001.pdf: pages 1-3
+  2307.12976_evaluating_ripple_effects_knowledge_editing_chunk_002.pdf: pages 4-6
+  2307.12976_evaluating_ripple_effects_knowledge_editing_chunk_003.pdf: pages 7-9
+  2307.12976_evaluating_ripple_effects_knowledge_editing_chunk_004.pdf: pages 10-12
+  2307.12976_evaluating_ripple_effects_knowledge_editing_chunk_005.pdf: pages 13-15

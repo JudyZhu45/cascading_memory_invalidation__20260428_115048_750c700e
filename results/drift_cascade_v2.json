@@ -1,0 +1,32 @@
+{
+  "flat": {
+    "method": "flat",
+    "accuracy": 0.0,
+    "false_invalidation_rate": 0.0,
+    "n_total": 0,
+    "n_correct": 0
+  },
+  "recency_decay": {
+    "method": "recency_decay",
+    "accuracy": 0.0,
+    "false_invalidation_rate": 0.0,
+    "n_total": 0,
+    "n_correct": 0
+  },
+  "1hop_cascade": {
+    "method": "1hop_cascade",
+    "accuracy": 0.0,
+    "false_invalidation_rate": 0.0,
+    "n_total": 0,
+    "n_correct": 0
+  },
+  "full_cascade": {
+    "method": "full_cascade",
+    "accuracy": 0.0,
+    "false_invalidation_rate": 0.0,
+    "n_total": 0,
+    "n_correct": 0
+  },
+  "improvement_full_vs_flat": 0.0,
+  "h3_supported": false
+}

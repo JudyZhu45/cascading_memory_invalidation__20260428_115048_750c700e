@@ -1,0 +1,33 @@
+{
+  "method": "full_cascade",
+  "structural_cascade_accuracy": 0.8168145533236016,
+  "semantic_edge_precision": 1.0,
+  "drift_cascade_accuracy": 0.7224669603524229,
+  "false_invalidation_rate": 0.30000000000000004,
+  "recommendation_correctness": 0.7224669603524229,
+  "flat_memory_accuracy": 0.4008810572687225,
+  "recency_decay_accuracy": 0.6960352422907489,
+  "1hop_cascade_accuracy": 0.6255506607929515,
+  "improvement_over_flat": 0.3215859030837004,
+  "embedding_distance_above_03": true,
+  "mean_cross_embedding_distance": 0.6898362636566162,
+  "semantic_bridge_comparison": {
+    "embedding_precision": 0.6111111111111112,
+    "embedding_recall": 1.0,
+    "embedding_f1": 0.7586206896551725,
+    "llm_precision": 1.0,
+    "llm_recall": 0.9090909090909091,
+    "llm_f1": 0.9523809523809523,
+    "behavioral_precision": 0.0
+  },
+  "distractor_selection_rates": {
+    "flat": 0.43171806167400884,
+    "recency_decay": 0.18061674008810572,
+    "1hop_cascade": 0.23348017621145375,
+    "full_cascade": 0.15418502202643172
+  },
+  "h1_structural_80pct": true,
+  "h2a_embedding_dist_03": true,
+  "h2b_llm_precision_60pct": true,
+  "h3_improvement_20pp": true
+}

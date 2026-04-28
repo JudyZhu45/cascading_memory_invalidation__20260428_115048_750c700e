@@ -1,0 +1,18 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+We presented cascading memory invalidation, a mechanism for automatically retiring outdated user memories through typed dependency edges in a directed graph. Our experiments on \locomo and \horizonbench establish three main findings.
+
+First, \textbf{structural cascades work}: \locatedin edges enable 81.7\% accurate invalidation of location-dependent memories after a user relocation, directly addressing the failure mode where AI assistants recommend context-inappropriate services after life events.
+
+Second, \textbf{LLM inference solves the semantic bridging problem}: \gptfouromini establishes \conflictswith edges with 100\% precision and 90.9\% recall at memory write time, by leveraging world knowledge about preference conflicts. This is the first documented solution to the semantic bridging problem on a real conflict benchmark.
+
+Third, \textbf{directed graph cascades reduce stale-preference selection by 64\%}: full transitive cascade improves evolved-preference accuracy from 40.1\% to 72.2\% (+32.2pp), and reduces pre-evolution distractor selection from 43.2\% to 15.4\%. We document \textit{bidirectional edge cancellation} as a previously uncharacterized implementation failure mode, providing a concrete design principle: \conflictswith edges must be directed from current to old preference nodes.
+
+These results suggest a practical recipe for memory invalidation in production systems: use LLM inference at write time to establish directed \conflictswith edges, require 2--3 repeated behavioral signals before triggering cascade, and limit propagation to 2--3 hops with decay $\approx$ 0.7.
+
+\para{Future directions.}
+Immediate next steps include end-to-end evaluation integrating cascade-based memory with a full retrieval-augmented generation pipeline on \locomo QA tasks, and hybrid edge detection combining embedding pre-filtering ($\tau \geq 0.5$) with LLM verification to reduce inference costs. Longer-term, production deployment at scale would enable evaluation of the behavioral co-occurrence approach for establishing conflict edges without LLM calls, as well as study of how cascade propagation interacts with memory graph density and preference cluster structure.
+
+\section*{Acknowledgments}
+Experiments were conducted using the OpenAI API and the HuggingFace ecosystem. We thank the authors of \locomo and \horizonbench for making their datasets publicly available.

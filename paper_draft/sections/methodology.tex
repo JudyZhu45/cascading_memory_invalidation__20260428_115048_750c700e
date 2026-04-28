@@ -1,0 +1,73 @@
+\section{Methodology}
+\label{sec:method}
+
+\subsection{Memory Graph Formulation}
+\label{sec:method:graph}
+
+We represent a user's memories as a directed weighted graph $\gG = (\gV, \gE, w)$, where each node $v \in \gV$ is a memory item with a weight $w(v) \in [0, 1]$ representing its current relevance, and each edge $e \in \gE$ encodes a typed dependency between memories. We define three edge types:
+
+\begin{itemize}[itemsep=2pt]
+    \item \textbf{\locatedin}: from a root location node $v_{\text{loc}}$ to any memory node $v$ whose content depends on that location. For example, the memory ``favorite bar in Shanghai'' is linked to the root node ``lives in Shanghai.''
+    \item \textbf{\conflictswith}: a \textit{directed} edge from a current-state preference node $v_{\text{new}}$ to an outdated preference node $v_{\text{old}}$. Directionality is critical: the edge flows from new to old, protecting $v_{\text{new}}$ from invalidation.
+    \item \textbf{\precedes}: temporal ordering between memories, used to resolve recency during cascade propagation.
+\end{itemize}
+
+Memory nodes are typed as \texttt{location}, \texttt{preference}, \texttt{activity}, \texttt{fact}, or \texttt{relationship}. Both node extraction from conversation turns and edge detection are performed at write time using \gptfouromini.
+
+\subsection{Cascade Propagation}
+\label{sec:method:cascade}
+
+\para{Structural cascade (LOCATED\_IN).}
+When the user's root location changes (e.g., Shanghai $\rightarrow$ Beijing), we trigger a BFS traversal from the old location root $v_{\text{loc}}$. For each node $v$ at depth $d$ with an incoming \locatedin path from $v_{\text{loc}}$, we update its weight:
+\begin{equation}
+    w'(v) = w(v) \cdot \left(1 - s \cdot \gamma^{d-1}\right)
+    \label{eq:structural_cascade}
+\end{equation}
+where $s \in [0,1]$ is the invalidation signal strength and $\gamma \in [0,1]$ is the per-hop decay factor. Unconnected nodes are unaffected.
+
+\para{Drift cascade (CONFLICTS\_WITH).}
+When a current preference node $v_c$ with weight $w(v_c)$ has a directed \conflictswith edge to an outdated node $v_o$, we propagate:
+\begin{equation}
+    w'(v_o) = w(v_o) \cdot \left(1 - \alpha \cdot w(v_c) \cdot \delta^{h-1}\right)
+    \label{eq:drift_cascade}
+\end{equation}
+where $\alpha$ is the edge strength, $\delta$ is the cascade decay factor, and $h$ is the hop depth. The weight of $v_c$ remains unchanged because the directed edge flows only from new to old. For full transitive cascade, the propagation continues for up to $n_{\text{hops}} = 3$ hops with $\delta = 0.7$.
+
+\para{Why directed edges matter.}
+If \conflictswith edges were undirected, both $v_c$ and $v_o$ would receive equal downweighting, eliminating the advantage of graph-based invalidation. We experimentally confirm this: bidirectional edges reduce full-cascade accuracy to 41.8\%, matching the flat memory baseline. Directed edges prevent this mutual cancellation.
+
+\subsection{Semantic Bridge: Establishing CONFLICTS\_WITH Edges}
+\label{sec:method:semantic}
+
+A core challenge is establishing \conflictswith edges without explicit user statements. We test three approaches:
+
+\para{Method A: Embedding similarity.}
+We embed memory items using \miniLM (sentence-transformers) and flag pairs with cosine distance $> \tau$ (default $\tau = 0.3$) as potential conflicts. This is a fast, inference-free method but suffers from high recall / low precision.
+
+\para{Method B: LLM inference at write time.}
+When a new preference memory $v_c$ is added to the graph, we query \gptfouromini with the prompt:
+\begin{quote}
+\small\textit{Does the preference ``[new preference]'' conflict with the preference ``[old preference]''? These conflict if acting on one would contradict acting on the other. Answer YES/NO with confidence [0,1].}
+\end{quote}
+Edges are added when confidence $> 0.6$. This leverages world knowledge (``bars are loud; quiet preferences conflict with bar preferences'') that is absent from user conversation history.
+
+\para{Method C: Behavioral co-occurrence.}
+We track session-level activity patterns and compute Pearson correlation across sessions between two preference features. Pairs with $r < -0.3$ are flagged as potentially conflicting. This requires large session counts to yield stable estimates.
+
+\subsection{Experimental Setup}
+\label{sec:method:setup}
+
+\para{Datasets.}
+We use two benchmarks (\tabref{tab:datasets}). \locomo~\cite{maharana2024locomo} provides 35 multi-session real-world-inspired dialogues (65--691 turns each) for structural cascade evaluation. We use 15 dialogues for the cascade experiment, extracting memories via LLM and detecting location-shift events via regex pattern matching on spatial keywords. \horizonbench~\cite{li2026horizonbench} provides 4,245 five-way multiple-choice items, of which 2,484 items have \texttt{has\_evolved=True} (the correct preference has changed from a known prior state). We use 227 evolved items with a known distractor (pre-evolution preference) and 100 static items for controlled evaluation.
+
+\para{Baselines.}
+We compare four memory strategies:
+\begin{enumerate}[itemsep=2pt]
+    \item \textbf{\flatmemory}: all memories stored at weight 1.0; no invalidation.
+    \item \textbf{\recencydecay}: weight $\propto \exp(-\lambda \cdot \Delta t)$ where $\lambda = 0.012$ and $\Delta t$ is days since the memory was created.
+    \item \textbf{\onehop}: \conflictswith cascade limited to 1 hop ($n_{\text{hops}} = 1$, $\delta = 0.7$).
+    \item \textbf{\fullcascade} (ours): transitive cascade with $n_{\text{hops}} = 3$, $\delta = 0.7$.
+\end{enumerate}
+
+\para{Metrics.}
+We report: structural cascade accuracy (binary classification of affected vs.\ unaffected nodes), semantic edge precision/recall/F1, evolved-preference accuracy and distractor selection rate on \horizonbench, and false invalidation rate on static items. All experiments use random seed 42. Memory graphs are constructed using NetworkX DiGraph. LLM calls use \gptfouromini via the OpenAI API; embeddings use \miniLM on CPU.

@@ -1,0 +1,84 @@
+\documentclass{article}
+\usepackage[final,main]{neurips_2025}
+
+% Required packages
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{subcaption}
+\usepackage{enumitem}
+\usepackage{natbib}
+\usepackage{multirow}
+
+% Import command files
+\input{commands/math}
+\input{commands/general}
+\input{commands/macros}
+
+\title{Cascading Memory Invalidation in User Memory Graphs:\\
+Directed Dependency Edges for Automated Belief Update}
+
+\author{judy and NeuriCo}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\input{sections/abstract}
+\end{abstract}
+
+\input{sections/introduction}
+\input{sections/related_work}
+\input{sections/methodology}
+
+% Dataset table (referenced in methodology)
+\input{tables/dataset_table}
+
+\input{sections/results}
+
+% Main figures
+\begin{figure}[t]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{../figures/fig1_memory_graph_cascade.png}
+        \caption{Memory graph before and after a location-shift cascade. \locatedin edges propagate the invalidation signal from the root location node (Shanghai) to all location-dependent memories.}
+        \label{fig:memory_graph}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{../figures/fig2_semantic_bridge.png}
+        \caption{Semantic bridge comparison across three \conflictswith edge detection methods. LLM inference achieves 100\% precision; embedding similarity achieves high recall at the cost of precision.}
+        \label{fig:semantic_bridge}
+    \end{subfigure}
+    \caption{Memory graph visualization \captiona and semantic bridge comparison \captionb. The directed graph structure enables targeted invalidation without affecting unrelated memories.}
+    \label{fig:main}
+\end{figure}
+
+\begin{figure}[t]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{../figures/fig3_drift_threshold.png}
+        \caption{Drift detection rate vs.\ behavioral signal threshold. Detection rate drops from 100\% at threshold 1 to 40\% at threshold 10. We recommend a threshold of 2--3 signals.}
+        \label{fig:drift_threshold}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{../figures/fig4_cascade_comparison.png}
+        \caption{Four-panel cascade method comparison on \horizonbench. \fullcascade achieves the highest evolved accuracy while maintaining identical static accuracy across all methods.}
+        \label{fig:cascade_comparison}
+    \end{subfigure}
+    \caption{Drift detection threshold analysis \captiona and full method comparison \captionb. Transitive cascade (3-hop) outperforms 1-hop cascade by 9.6pp on evolved preferences.}
+    \label{fig:analysis}
+\end{figure}
+
+\input{sections/discussion}
+\input{sections/conclusion}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

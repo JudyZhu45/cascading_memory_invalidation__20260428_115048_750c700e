@@ -1,0 +1,27 @@
+{
+  "embedding": {
+    "method": "embedding",
+    "n_pairs_checked": 2647,
+    "n_predicted_conflict": 2647,
+    "n_true_positive": 2,
+    "precision": 0.0007555723460521345,
+    "avg_cosine_distance": 0.7054070742525692
+  },
+  "llm": {
+    "method": "llm",
+    "n_pairs_checked": 120,
+    "n_predicted_conflict": 0,
+    "n_high_confidence": 0,
+    "precision": 0.0,
+    "avg_confidence": 0.9025000000000003
+  },
+  "behavioral": {
+    "method": "behavioral",
+    "n_pairs_checked": 7,
+    "n_predicted_conflict": 1,
+    "n_strong_conflict": 0,
+    "precision": 0.0,
+    "avg_pearson_r": 0.29280854693173125
+  },
+  "n_dialogues_processed": 6
+}

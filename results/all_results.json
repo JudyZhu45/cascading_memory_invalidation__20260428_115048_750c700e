@@ -1,0 +1,581 @@
+{
+  "metadata": {
+    "seed": 42,
+    "model": "gpt-4o-mini",
+    "timestamp": "2026-04-28T12:29:19.299878",
+    "n_locomo_dialogues": 35,
+    "n_horizonbench_evolved": 2484,
+    "n_dialogues_with_location_shifts": 21,
+    "n_dialogues_with_preference_drifts": 35
+  },
+  "embedding_distance_test": {
+    "quiet_phrases": [
+      "I prefer quiet evenings at home",
+      "I love spending time in peaceful environments",
+      "I enjoy solitude and quiet activities",
+      "I like reading quietly by myself",
+      "I prefer calm, low-key activities",
+      "I've been enjoying some alone time lately",
+      "I find loud environments draining",
+      "I like tranquil spaces and silence",
+      "I've been meditating and enjoying peaceful moments",
+      "I prefer a calm and quiet lifestyle"
+    ],
+    "noisy_phrases": [
+      "I love going to bars and clubs",
+      "I enjoy loud parties and social gatherings",
+      "I like nightlife and going out dancing",
+      "I love crowded concerts and festivals",
+      "I enjoy lively bars with loud music",
+      "I like socializing at noisy venues",
+      "I love a good bar scene with friends",
+      "I enjoy the energy of crowded nightclubs",
+      "I love karaoke nights at loud bars",
+      "I like being in the center of the action at parties"
+    ],
+    "result": {
+      "mean_cross_distance": 0.6419345140457153,
+      "min_cross_distance": 0.3575255870819092,
+      "max_cross_distance": 0.8899213075637817,
+      "std_cross_distance": 0.10101616382598877,
+      "mean_within_quiet_distance": 0.5135120153427124,
+      "fraction_above_threshold_03": 1.0,
+      "fraction_above_threshold_05": 0.95,
+      "h2a_supported": true
+    }
+  },
+  "structural_cascade": {
+    "n_dialogues": 8,
+    "structural_cascade_accuracy": 0.7065989489953668,
+    "structural_cascade_precision": 0.05416666666666667,
+    "structural_cascade_recall": 0.05178571428571428,
+    "structural_cascade_f1": 0.051250000000000004,
+    "per_dialogue": [
+      {
+        "precision": 0.13333333333333333,
+        "recall": 0.2,
+        "f1": 0.16,
+        "accuracy": 0.5116279069767442,
+        "tp": 2,
+        "fp": 13,
+        "fn": 8,
+        "tn": 20,
+        "n_gold_invalidated": 10,
+        "n_predicted_invalidated": 15,
+        "dialogue_id": 1,
+        "n_nodes": 43,
+        "n_located_in_edges": 15,
+        "n_affected_by_cascade": 15
+      },
+      {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "accuracy": 0.5833333333333334,
+        "tp": 0,
+        "fp": 18,
+        "fn": 2,
+        "tn": 28,
+        "n_gold_invalidated": 2,
+        "n_predicted_invalidated": 18,
+        "dialogue_id": 2,
+        "n_nodes": 48,
+        "n_located_in_edges": 18,
+        "n_affected_by_cascade": 18
+      },
+      {
+        "precision": 0.3,
+        "recall": 0.21428571428571427,
+        "f1": 0.25,
+        "accuracy": 0.5609756097560976,
+        "tp": 3,
+        "fp": 7,
+        "fn": 11,
+        "tn": 20,
+        "n_gold_invalidated": 14,
+        "n_predicted_invalidated": 10,
+        "dialogue_id": 3,
+        "n_nodes": 41,
+        "n_located_in_edges": 10,
+        "n_affected_by_cascade": 10
+      },
+      {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "accuracy": 0.7755102040816326,
+        "tp": 0,
+        "fp": 6,
+        "fn": 5,
+        "tn": 38,
+        "n_gold_invalidated": 5,
+        "n_predicted_invalidated": 6,
+        "dialogue_id": 6,
+        "n_nodes": 49,
+        "n_located_in_edges": 6,
+        "n_affected_by_cascade": 6
+      },
+      {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "accuracy": 0.7254901960784313,
+        "tp": 0,
+        "fp": 1,
+        "fn": 13,
+        "tn": 37,
+        "n_gold_invalidated": 13,
+        "n_predicted_invalidated": 1,
+        "dialogue_id": 9,
+        "n_nodes": 51,
+        "n_located_in_edges": 1,
+        "n_affected_by_cascade": 1
+      },
+      {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "accuracy": 0.9215686274509803,
+        "tp": 0,
+        "fp": 0,
+        "fn": 4,
+        "tn": 47,
+        "n_gold_invalidated": 4,
+        "n_predicted_invalidated": 0,
+        "dialogue_id": 16,
+        "n_nodes": 51,
+        "n_located_in_edges": 0,
+        "n_affected_by_cascade": 0
+      },
+      {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "accuracy": 0.7142857142857143,
+        "tp": 0,
+        "fp": 0,
+        "fn": 14,
+        "tn": 35,
+        "n_gold_invalidated": 14,
+        "n_predicted_invalidated": 0,
+        "dialogue_id": 19,
+        "n_nodes": 49,
+        "n_located_in_edges": 0,
+        "n_affected_by_cascade": 0
+      },
+      {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "accuracy": 0.86,
+        "tp": 0,
+        "fp": 0,
+        "fn": 7,
+        "tn": 43,
+        "n_gold_invalidated": 7,
+        "n_predicted_invalidated": 0,
+        "dialogue_id": 22,
+        "n_nodes": 50,
+        "n_located_in_edges": 0,
+        "n_affected_by_cascade": 0
+      }
+    ]
+  },
+  "semantic_bridge": {
+    "embedding": {
+      "method": "embedding",
+      "n_pairs_checked": 2647,
+      "n_predicted_conflict": 2647,
+      "n_true_positive": 2,
+      "precision": 0.0007555723460521345,
+      "avg_cosine_distance": 0.7054070742525692
+    },
+    "llm": {
+      "method": "llm",
+      "n_pairs_checked": 120,
+      "n_predicted_conflict": 0,
+      "n_high_confidence": 0,
+      "precision": 0.0,
+      "avg_confidence": 0.9025000000000003
+    },
+    "behavioral": {
+      "method": "behavioral",
+      "n_pairs_checked": 7,
+      "n_predicted_conflict": 1,
+      "n_strong_conflict": 0,
+      "precision": 0.0,
+      "avg_pearson_r": 0.29280854693173125
+    },
+    "n_dialogues_processed": 6
+  },
+  "drift_cascade": {
+    "flat": {
+      "accuracy": 0.0,
+      "false_invalidation_rate": 0.44000000000000006,
+      "n_dialogues": 10,
+      "per_dialogue": [
+        {
+          "method": "flat",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 2,
+          "false_invalidation_rate": 0.4
+        },
+        {
+          "method": "flat",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 2,
+          "false_invalidation_rate": 0.4
+        },
+        {
+          "method": "flat",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 2,
+          "false_invalidation_rate": 0.4
+        },
+        {
+          "method": "flat",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 3,
+          "false_invalidation_rate": 0.6
+        },
+        {
+          "method": "flat",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 1,
+          "false_invalidation_rate": 0.2
+        },
+        {
+          "method": "flat",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 2,
+          "false_invalidation_rate": 0.4
+        },
+        {
+          "method": "flat",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 2,
+          "false_invalidation_rate": 0.4
+        },
+        {
+          "method": "flat",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 3,
+          "false_invalidation_rate": 0.6
+        },
+        {
+          "method": "flat",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 3,
+          "false_invalidation_rate": 0.6
+        },
+        {
+          "method": "flat",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 2,
+          "false_invalidation_rate": 0.4
+        }
+      ]
+    },
+    "recency_decay": {
+      "accuracy": 0.0,
+      "false_invalidation_rate": 0.48,
+      "n_dialogues": 10,
+      "per_dialogue": [
+        {
+          "method": "recency_decay",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 2,
+          "false_invalidation_rate": 0.4
+        },
+        {
+          "method": "recency_decay",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 2,
+          "false_invalidation_rate": 0.4
+        },
+        {
+          "method": "recency_decay",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 2,
+          "false_invalidation_rate": 0.4
+        },
+        {
+          "method": "recency_decay",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 4,
+          "false_invalidation_rate": 0.8
+        },
+        {
+          "method": "recency_decay",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 1,
+          "false_invalidation_rate": 0.2
+        },
+        {
+          "method": "recency_decay",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 2,
+          "false_invalidation_rate": 0.4
+        },
+        {
+          "method": "recency_decay",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 3,
+          "false_invalidation_rate": 0.6
+        },
+        {
+          "method": "recency_decay",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 3,
+          "false_invalidation_rate": 0.6
+        },
+        {
+          "method": "recency_decay",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 3,
+          "false_invalidation_rate": 0.6
+        },
+        {
+          "method": "recency_decay",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 2,
+          "false_invalidation_rate": 0.4
+        }
+      ]
+    },
+    "1hop_cascade": {
+      "accuracy": 0.0,
+      "false_invalidation_rate": 0.44000000000000006,
+      "n_dialogues": 10,
+      "per_dialogue": [
+        {
+          "method": "1hop_cascade",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 2,
+          "false_invalidation_rate": 0.4
+        },
+        {
+          "method": "1hop_cascade",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 2,
+          "false_invalidation_rate": 0.4
+        },
+        {
+          "method": "1hop_cascade",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 2,
+          "false_invalidation_rate": 0.4
+        },
+        {
+          "method": "1hop_cascade",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 3,
+          "false_invalidation_rate": 0.6
+        },
+        {
+          "method": "1hop_cascade",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 1,
+          "false_invalidation_rate": 0.2
+        },
+        {
+          "method": "1hop_cascade",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 2,
+          "false_invalidation_rate": 0.4
+        },
+        {
+          "method": "1hop_cascade",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 2,
+          "false_invalidation_rate": 0.4
+        },
+        {
+          "method": "1hop_cascade",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 3,
+          "false_invalidation_rate": 0.6
+        },
+        {
+          "method": "1hop_cascade",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 3,
+          "false_invalidation_rate": 0.6
+        },
+        {
+          "method": "1hop_cascade",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 2,
+          "false_invalidation_rate": 0.4
+        }
+      ]
+    },
+    "full_cascade": {
+      "accuracy": 0.0,
+      "false_invalidation_rate": 0.44000000000000006,
+      "n_dialogues": 10,
+      "per_dialogue": [
+        {
+          "method": "full_cascade",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 2,
+          "false_invalidation_rate": 0.4
+        },
+        {
+          "method": "full_cascade",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 2,
+          "false_invalidation_rate": 0.4
+        },
+        {
+          "method": "full_cascade",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 2,
+          "false_invalidation_rate": 0.4
+        },
+        {
+          "method": "full_cascade",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 3,
+          "false_invalidation_rate": 0.6
+        },
+        {
+          "method": "full_cascade",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 1,
+          "false_invalidation_rate": 0.2
+        },
+        {
+          "method": "full_cascade",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 2,
+          "false_invalidation_rate": 0.4
+        },
+        {
+          "method": "full_cascade",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 2,
+          "false_invalidation_rate": 0.4
+        },
+        {
+          "method": "full_cascade",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 3,
+          "false_invalidation_rate": 0.6
+        },
+        {
+          "method": "full_cascade",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 3,
+          "false_invalidation_rate": 0.6
+        },
+        {
+          "method": "full_cascade",
+          "n_qa": 5,
+          "correct": 0,
+          "accuracy": 0.0,
+          "false_invalidations": 2,
+          "false_invalidation_rate": 0.4
+        }
+      ]
+    },
+    "improvement_full_vs_flat": 0.0,
+    "h3_supported": false
+  },
+  "threshold_curve": {
+    "signal_thresholds": [
+      1,
+      2,
+      3,
+      5,
+      8,
+      10
+    ],
+    "detection_rates": [
+      1.0,
+      1.0,
+      0.8,
+      0.6,
+      0.4,
+      0.4
+    ]
+  }
+}

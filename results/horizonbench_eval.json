@@ -1,0 +1,526 @@
+{
+  "flat": {
+    "method": "flat",
+    "evolved_accuracy": 0.4935064935064935,
+    "evolved_distractor_rate": 0.34415584415584416,
+    "static_accuracy": 0.68,
+    "combined_accuracy": 0.5669291338582677,
+    "false_invalidation_rate": 0.31999999999999995,
+    "n_evolved": 154,
+    "n_static": 100
+  },
+  "recency_decay": {
+    "method": "recency_decay",
+    "evolved_accuracy": 0.6363636363636364,
+    "evolved_distractor_rate": 0.22727272727272727,
+    "static_accuracy": 0.68,
+    "combined_accuracy": 0.6535433070866141,
+    "false_invalidation_rate": 0.31999999999999995,
+    "n_evolved": 154,
+    "n_static": 100
+  },
+  "1hop_cascade": {
+    "method": "1hop_cascade",
+    "evolved_accuracy": 0.474025974025974,
+    "evolved_distractor_rate": 0.36363636363636365,
+    "static_accuracy": 0.68,
+    "combined_accuracy": 0.5551181102362205,
+    "false_invalidation_rate": 0.31999999999999995,
+    "n_evolved": 154,
+    "n_static": 100
+  },
+  "full_cascade": {
+    "method": "full_cascade",
+    "evolved_accuracy": 0.4675324675324675,
+    "evolved_distractor_rate": 0.37012987012987014,
+    "static_accuracy": 0.68,
+    "combined_accuracy": 0.5511811023622047,
+    "false_invalidation_rate": 0.31999999999999995,
+    "n_evolved": 154,
+    "n_static": 100
+  },
+  "improvement_full_vs_flat": -0.025974025974025983,
+  "h3_supported": false,
+  "per_item": [
+    {
+      "item_id": "Marcus Chen_event113_20260325_turn3_apology_style_preferences_377_counterfactuals.json",
+      "is_evolved": true,
+      "flat": {
+        "selected": "A",
+        "correct": false,
+        "distractor_selected": true
+      },
+      "recency_decay": {
+        "selected": "A",
+        "correct": false,
+        "distractor_selected": true
+      },
+      "1hop_cascade": {
+        "selected": "A",
+        "correct": false,
+        "distractor_selected": true
+      },
+      "full_cascade": {
+        "selected": "A",
+        "correct": false,
+        "distractor_selected": true
+      }
+    },
+    {
+      "item_id": "Marcus Chen_event113_20260325_turn5_apology_style_preferences_377_counterfactuals.json",
+      "is_evolved": true,
+      "flat": {
+        "selected": "E",
+        "correct": false,
+        "distractor_selected": true
+      },
+      "recency_decay": {
+        "selected": "E",
+        "correct": false,
+        "distractor_selected": true
+      },
+      "1hop_cascade": {
+        "selected": "E",
+        "correct": false,
+        "distractor_selected": true
+      },
+      "full_cascade": {
+        "selected": "E",
+        "correct": false,
+        "distractor_selected": true
+      }
+    },
+    {
+      "item_id": "Marcus Chen_event113_20260325_turn7_apology_style_preferences_377_counterfactuals.json",
+      "is_evolved": true,
+      "flat": {
+        "selected": "A",
+        "correct": false,
+        "distractor_selected": true
+      },
+      "recency_decay": {
+        "selected": "A",
+        "correct": false,
+        "distractor_selected": true
+      },
+      "1hop_cascade": {
+        "selected": "A",
+        "correct": false,
+        "distractor_selected": true
+      },
+      "full_cascade": {
+        "selected": "A",
+        "correct": false,
+        "distractor_selected": true
+      }
+    },
+    {
+      "item_id": "Marcus Chen_event72_20260325_turn17_emotional_support_style_59_counterfactuals.json",
+      "is_evolved": true,
+      "flat": {
+        "selected": "E",
+        "correct": true,
+        "distractor_selected": false
+      },
+      "recency_decay": {
+        "selected": "E",
+        "correct": true,
+        "distractor_selected": false
+      },
+      "1hop_cascade": {
+        "selected": "E",
+        "correct": true,
+        "distractor_selected": false
+      },
+      "full_cascade": {
+        "selected": "E",
+        "correct": true,
+        "distractor_selected": false
+      }
+    },
+    {
+      "item_id": "Marcus Chen_event114_20260325_turn13_emotional_support_style_20_counterfactuals.json",
+      "is_evolved": true,
+      "flat": {
+        "selected": "A",
+        "correct": false,
+        "distractor_selected": true
+      },
+      "recency_decay": {
+        "selected": "A",
+        "correct": false,
+        "distractor_selected": true
+      },
+      "1hop_cascade": {
+        "selected": "A",
+        "correct": false,
+        "distractor_selected": true
+      },
+      "full_cascade": {
+        "selected": "A",
+        "correct": false,
+        "distractor_selected": true
+      }
+    },
+    {
+      "item_id": "Marcus Chen_event114_20260325_turn9_emotional_support_style_20_counterfactuals.json",
+      "is_evolved": true,
+      "flat": {
+        "selected": "A",
+        "correct": false,
+        "distractor_selected": true
+      },
+      "recency_decay": {
+        "selected": "A",
+        "correct": false,
+        "distractor_selected": true
+      },
+      "1hop_cascade": {
+        "selected": "A",
+        "correct": false,
+        "distractor_selected": true
+      },
+      "full_cascade": {
+        "selected": "A",
+        "correct": false,
+        "distractor_selected": true
+      }
+    },
+    {
+      "item_id": "Marcus Chen_event72_20260325_turn5_emotional_support_style_59_counterfactuals.json",
+      "is_evolved": true,
+      "flat": {
+        "selected": "C",
+        "correct": true,
+        "distractor_selected": false
+      },
+      "recency_decay": {
+        "selected": "C",
+        "correct": true,
+        "distractor_selected": false
+      },
+      "1hop_cascade": {
+        "selected": "C",
+        "correct": true,
+        "distractor_selected": false
+      },
+      "full_cascade": {
+        "selected": "C",
+        "correct": true,
+        "distractor_selected": false
+      }
+    },
+    {
+      "item_id": "Marcus Chen_event113_20260325_turn25_apology_style_preferences_377_counterfactuals.json",
+      "is_evolved": true,
+      "flat": {
+        "selected": "A",
+        "correct": false,
+        "distractor_selected": true
+      },
+      "recency_decay": {
+        "selected": "A",
+        "correct": false,
+        "distractor_selected": true
+      },
+      "1hop_cascade": {
+        "selected": "A",
+        "correct": false,
+        "distractor_selected": true
+      },
+      "full_cascade": {
+        "selected": "A",
+        "correct": false,
+        "distractor_selected": true
+      }
+    },
+    {
+      "item_id": "Marcus Chen_event114_20260325_turn1_emotional_support_style_20_counterfactuals.json",
+      "is_evolved": true,
+      "flat": {
+        "selected": "A",
+        "correct": false,
+        "distractor_selected": true
+      },
+      "recency_decay": {
+        "selected": "A",
+        "correct": false,
+        "distractor_selected": true
+      },
+      "1hop_cascade": {
+        "selected": "A",
+        "correct": false,
+        "distractor_selected": true
+      },
+      "full_cascade": {
+        "selected": "A",
+        "correct": false,
+        "distractor_selected": true
+      }
+    },
+    {
+      "item_id": "Marcus Chen_event113_20260325_turn23_apology_style_preferences_377_counterfactuals.json",
+      "is_evolved": true,
+      "flat": {
+        "selected": "A",
+        "correct": false,
+        "distractor_selected": true
+      },
+      "recency_decay": {
+        "selected": "A",
+        "correct": false,
+        "distractor_selected": true
+      },
+      "1hop_cascade": {
+        "selected": "A",
+        "correct": false,
+        "distractor_selected": true
+      },
+      "full_cascade": {
+        "selected": "A",
+        "correct": false,
+        "distractor_selected": true
+      }
+    },
+    {
+      "item_id": "Marcus Chen_event44_20260326_turn33_philosophical_engagement_12_counterfactuals.json",
+      "is_evolved": true,
+      "flat": {
+        "selected": "D",
+        "correct": false,
+        "distractor_selected": true
+      },
+      "recency_decay": {
+        "selected": "D",
+        "correct": false,
+        "distractor_selected": true
+      },
+      "1hop_cascade": {
+        "selected": "D",
+        "correct": false,
+        "distractor_selected": true
+      },
+      "full_cascade": {
+        "selected": "D",
+        "correct": false,
+        "distractor_selected": true
+      }
+    },
+    {
+      "item_id": "Marcus Chen_event44_20260326_turn31_philosophical_engagement_12_counterfactuals.json",
+      "is_evolved": true,
+      "flat": {
+        "selected": "C",
+        "correct": false,
+        "distractor_selected": true
+      },
+      "recency_decay": {
+        "selected": "C",
+        "correct": false,
+        "distractor_selected": true
+      },
+      "1hop_cascade": {
+        "selected": "C",
+        "correct": false,
+        "distractor_selected": true
+      },
+      "full_cascade": {
+        "selected": "C",
+        "correct": false,
+        "distractor_selected": true
+      }
+    },
+    {
+      "item_id": "Marcus Chen_event98_20260328_turn5_public_speaking_coaching_preferences_397_counterfactuals.json",
+      "is_evolved": true,
+      "flat": {
+        "selected": "B",
+        "correct": true,
+        "distractor_selected": false
+      },
+      "recency_decay": {
+        "selected": "B",
+        "correct": true,
+        "distractor_selected": false
+      },
+      "1hop_cascade": {
+        "selected": "B",
+        "correct": true,
+        "distractor_selected": false
+      },
+      "full_cascade": {
+        "selected": "B",
+        "correct": true,
+        "distractor_selected": false
+      }
+    },
+    {
+      "item_id": "Marcus Chen_event163_20260328_turn17_emotional_support_style_19_counterfactuals.json",
+      "is_evolved": true,
+      "flat": {
+        "selected": "E",
+        "correct": false,
+        "distractor_selected": false
+      },
+      "recency_decay": {
+        "selected": "E",
+        "correct": false,
+        "distractor_selected": false
+      },
+      "1hop_cascade": {
+        "selected": "E",
+        "correct": false,
+        "distractor_selected": false
+      },
+      "full_cascade": {
+        "selected": "E",
+        "correct": false,
+        "distractor_selected": false
+      }
+    },
+    {
+      "item_id": "Marcus Chen_event45_20260328_turn1_emotional_support_style_18_counterfactuals.json",
+      "is_evolved": true,
+      "flat": {
+        "selected": "B",
+        "correct": false,
+        "distractor_selected": false
+      },
+      "recency_decay": {
+        "selected": "E",
+        "correct": true,
+        "distractor_selected": false
+      },
+      "1hop_cascade": {
+        "selected": "B",
+        "correct": false,
+        "distractor_selected": false
+      },
+      "full_cascade": {
+        "selected": "B",
+        "correct": false,
+        "distractor_selected": false
+      }
+    },
+    {
+      "item_id": "Marcus Chen_event45_20260328_turn23_emotional_support_style_18_counterfactuals.json",
+      "is_evolved": true,
+      "flat": {
+        "selected": "C",
+        "correct": false,
+        "distractor_selected": false
+      },
+      "recency_decay": {
+        "selected": "A",
+        "correct": true,
+        "distractor_selected": false
+      },
+      "1hop_cascade": {
+        "selected": "C",
+        "correct": false,
+        "distractor_selected": false
+      },
+      "full_cascade": {
+        "selected": "C",
+        "correct": false,
+        "distractor_selected": false
+      }
+    },
+    {
+      "item_id": "Marcus Chen_event98_20260328_turn1_public_speaking_coaching_preferences_397_counterfactuals.json",
+      "is_evolved": true,
+      "flat": {
+        "selected": "E",
+        "correct": true,
+        "distractor_selected": false
+      },
+      "recency_decay": {
+        "selected": "E",
+        "correct": true,
+        "distractor_selected": false
+      },
+      "1hop_cascade": {
+        "selected": "E",
+        "correct": true,
+        "distractor_selected": false
+      },
+      "full_cascade": {
+        "selected": "E",
+        "correct": true,
+        "distractor_selected": false
+      }
+    },
+    {
+      "item_id": "Marcus Chen_event45_20260328_turn3_emotional_support_style_18_counterfactuals.json",
+      "is_evolved": true,
+      "flat": {
+        "selected": "E",
+        "correct": false,
+        "distractor_selected": false
+      },
+      "recency_decay": {
+        "selected": "D",
+        "correct": true,
+        "distractor_selected": false
+      },
+      "1hop_cascade": {
+        "selected": "E",
+        "correct": false,
+        "distractor_selected": false
+      },
+      "full_cascade": {
+        "selected": "E",
+        "correct": false,
+        "distractor_selected": false
+      }
+    },
+    {
+      "item_id": "Marcus Chen_event45_20260328_turn21_emotional_support_style_18_counterfactuals.json",
+      "is_evolved": true,
+      "flat": {
+        "selected": "D",
+        "correct": false,
+        "distractor_selected": false
+      },
+      "recency_decay": {
+        "selected": "A",
+        "correct": true,
+        "distractor_selected": false
+      },
+      "1hop_cascade": {
+        "selected": "D",
+        "correct": false,
+        "distractor_selected": false
+      },
+      "full_cascade": {
+        "selected": "D",
+        "correct": false,
+        "distractor_selected": false
+      }
+    },
+    {
+      "item_id": "Marcus Chen_event46_20260328_turn5_emotional_support_style_23_counterfactuals.json",
+      "is_evolved": true,
+      "flat": {
+        "selected": "C",
+        "correct": true,
+        "distractor_selected": false
+      },
+      "recency_decay": {
+        "selected": "C",
+        "correct": true,
+        "distractor_selected": false
+      },
+      "1hop_cascade": {
+        "selected": "C",
+        "correct": true,
+        "distractor_selected": false
+      },
+      "full_cascade": {
+        "selected": "C",
+        "correct": true,
+        "distractor_selected": false
+      }
+    }
+  ]
+}

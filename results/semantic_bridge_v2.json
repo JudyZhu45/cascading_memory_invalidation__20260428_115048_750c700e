@@ -1,0 +1,356 @@
+{
+  "n_pairs": 19,
+  "n_positive": 11,
+  "n_negative": 8,
+  "embedding": {
+    "method": "embedding",
+    "accuracy": 0.631578947368421,
+    "precision": 0.6111111111111112,
+    "recall": 1.0,
+    "f1": 0.7586206896551725,
+    "tp": 11,
+    "fp": 7,
+    "fn": 0,
+    "avg_dist_conflict": 0.6625259708274495,
+    "avg_dist_nonconflict": 0.45534060150384903,
+    "threshold_used": 0.3,
+    "per_pair": [
+      {
+        "content_a": "I prefer quiet evenings at home and find bars draining",
+        "content_b": "I love going to bars and clubs",
+        "gold": true,
+        "cosine_distance": 0.40878593921661377,
+        "predicted_conflict": true,
+        "correct": true
+      },
+      {
+        "content_a": "I've been enjoying peaceful solitude lately",
+        "content_b": "I enjoy loud nightlife and crowded parties",
+        "gold": true,
+        "cosine_distance": 0.6427994966506958,
+        "predicted_conflict": true,
+        "correct": true
+      },
+      {
+        "content_a": "I need calm and quiet to recharge my energy",
+        "content_b": "I love the energy of crowded nightclubs",
+        "gold": true,
+        "cosine_distance": 0.6531938016414642,
+        "predicted_conflict": true,
+        "correct": true
+      },
+      {
+        "content_a": "I prefer staying home and reading quietly",
+        "content_b": "I like going out to loud social gatherings",
+        "gold": true,
+        "cosine_distance": 0.5416721105575562,
+        "predicted_conflict": true,
+        "correct": true
+      },
+      {
+        "content_a": "I've become more introverted and prefer silence",
+        "content_b": "I enjoy rowdy bars and social events",
+        "gold": true,
+        "cosine_distance": 0.6980097889900208,
+        "predicted_conflict": true,
+        "correct": true
+      },
+      {
+        "content_a": "I love tranquil hikes in nature by myself",
+        "content_b": "I prefer busy nightclubs and loud music venues",
+        "gold": true,
+        "cosine_distance": 0.7616508305072784,
+        "predicted_conflict": true,
+        "correct": true
+      },
+      {
+        "content_a": "I find noise and crowds exhausting",
+        "content_b": "I love karaoke nights at packed bars",
+        "gold": true,
+        "cosine_distance": 0.6411951184272766,
+        "predicted_conflict": true,
+        "correct": true
+      },
+      {
+        "content_a": "I meditate daily and value inner peace",
+        "content_b": "I love wild parties and bar-hopping",
+        "gold": true,
+        "cosine_distance": 0.9328315258026123,
+        "predicted_conflict": true,
+        "correct": true
+      },
+      {
+        "content_a": "I prefer hiking in the morning",
+        "content_b": "I enjoy hiking in the evening",
+        "gold": false,
+        "cosine_distance": 0.2035353183746338,
+        "predicted_conflict": false,
+        "correct": true
+      },
+      {
+        "content_a": "I like jazz music",
+        "content_b": "I enjoy classical music",
+        "gold": false,
+        "cosine_distance": 0.33359837532043457,
+        "predicted_conflict": true,
+        "correct": false
+      },
+      {
+        "content_a": "I prefer tea over coffee",
+        "content_b": "I enjoy hot beverages in the morning",
+        "gold": false,
+        "cosine_distance": 0.4956587553024292,
+        "predicted_conflict": true,
+        "correct": false
+      },
+      {
+        "content_a": "I love cooking Italian food",
+        "content_b": "I enjoy trying new restaurants",
+        "gold": false,
+        "cosine_distance": 0.46615922451019287,
+        "predicted_conflict": true,
+        "correct": false
+      },
+      {
+        "content_a": "I like reading science fiction",
+        "content_b": "I enjoy fantasy novels too",
+        "gold": false,
+        "cosine_distance": 0.41526180505752563,
+        "predicted_conflict": true,
+        "correct": false
+      },
+      {
+        "content_a": "I prefer cycling for exercise",
+        "content_b": "I enjoy swimming at the pool",
+        "gold": false,
+        "cosine_distance": 0.6007559895515442,
+        "predicted_conflict": true,
+        "correct": false
+      },
+      {
+        "content_a": "I work from home",
+        "content_b": "I like remote work arrangements",
+        "gold": false,
+        "cosine_distance": 0.588555097579956,
+        "predicted_conflict": true,
+        "correct": false
+      },
+      {
+        "content_a": "I have two dogs",
+        "content_b": "I love animals and pets",
+        "gold": false,
+        "cosine_distance": 0.5392002463340759,
+        "predicted_conflict": true,
+        "correct": false
+      },
+      {
+        "content_a": "My favorite bar is The Blue Moon in Shanghai",
+        "content_b": "I moved to Beijing last month",
+        "gold": true,
+        "cosine_distance": 0.6260125041007996,
+        "predicted_conflict": true,
+        "correct": true
+      },
+      {
+        "content_a": "I always eat at my favorite restaurant in New York",
+        "content_b": "I've relocated to London",
+        "gold": true,
+        "cosine_distance": 0.7093943357467651,
+        "predicted_conflict": true,
+        "correct": true
+      },
+      {
+        "content_a": "I go to the local gym on Main Street",
+        "content_b": "I moved to a different neighborhood",
+        "gold": true,
+        "cosine_distance": 0.6722402274608612,
+        "predicted_conflict": true,
+        "correct": true
+      }
+    ]
+  },
+  "llm": {
+    "method": "llm",
+    "accuracy": 0.9473684210526315,
+    "precision": 1.0,
+    "recall": 0.9090909090909091,
+    "f1": 0.9523809523809523,
+    "tp": 10,
+    "fp": 0,
+    "fn": 1,
+    "avg_confidence": 0.8894736842105262,
+    "per_pair": [
+      {
+        "content_a": "I prefer quiet evenings at home and find bars draining",
+        "content_b": "I love going to bars and clubs",
+        "gold": true,
+        "predicted_conflict": true,
+        "confidence": 0.9,
+        "explanation": "The two memories express opposing preferences regarding social environments, making it highly unlikely for both to be true simultaneously.",
+        "correct": true
+      },
+      {
+        "content_a": "I've been enjoying peaceful solitude lately",
+        "content_b": "I enjoy loud nightlife and crowded parties",
+        "gold": true,
+        "predicted_conflict": true,
+        "confidence": 0.9,
+        "explanation": "The enjoyment of peaceful solitude is fundamentally at odds with enjoying loud nightlife and crowded parties, as they represent opposing preferences for social environments.",
+        "correct": true
+      },
+      {
+        "content_a": "I need calm and quiet to recharge my energy",
+        "content_b": "I love the energy of crowded nightclubs",
+        "gold": true,
+        "predicted_conflict": true,
+        "confidence": 0.9,
+        "explanation": "The need for calm and quiet to recharge is directly opposed to the enjoyment of the energy of crowded nightclubs, as the former suggests a preference for solitude while the latter implies a preference for social and noisy environments.",
+        "correct": true
+      },
+      {
+        "content_a": "I prefer staying home and reading quietly",
+        "content_b": "I like going out to loud social gatherings",
+        "gold": true,
+        "predicted_conflict": true,
+        "confidence": 0.9,
+        "explanation": "The preferences for staying home to read quietly and for going out to loud social gatherings are fundamentally contradictory, as they represent opposing desires for solitude versus social interaction.",
+        "correct": true
+      },
+      {
+        "content_a": "I've become more introverted and prefer silence",
+        "content_b": "I enjoy rowdy bars and social events",
+        "gold": true,
+        "predicted_conflict": true,
+        "confidence": 0.9,
+        "explanation": "A person who is more introverted and prefers silence would likely find rowdy bars and social events undesirable, making these two memories contradictory.",
+        "correct": true
+      },
+      {
+        "content_a": "I love tranquil hikes in nature by myself",
+        "content_b": "I prefer busy nightclubs and loud music venues",
+        "gold": true,
+        "predicted_conflict": true,
+        "confidence": 0.9,
+        "explanation": "The preferences for tranquil hikes in nature and busy nightclubs represent fundamentally different environments and experiences, suggesting a strong inconsistency in personal preferences.",
+        "correct": true
+      },
+      {
+        "content_a": "I find noise and crowds exhausting",
+        "content_b": "I love karaoke nights at packed bars",
+        "gold": true,
+        "predicted_conflict": true,
+        "confidence": 0.8,
+        "explanation": "Finding noise and crowds exhausting suggests a dislike for such environments, which strongly undermines the enjoyment of karaoke nights at packed bars.",
+        "correct": true
+      },
+      {
+        "content_a": "I meditate daily and value inner peace",
+        "content_b": "I love wild parties and bar-hopping",
+        "gold": true,
+        "predicted_conflict": true,
+        "confidence": 0.8,
+        "explanation": "The values of daily meditation and inner peace generally contrast with the chaotic and social nature of wild parties and bar-hopping, suggesting a strong inconsistency in lifestyle preferences.",
+        "correct": true
+      },
+      {
+        "content_a": "I prefer hiking in the morning",
+        "content_b": "I enjoy hiking in the evening",
+        "gold": false,
+        "predicted_conflict": false,
+        "confidence": 0.9,
+        "explanation": "A person can prefer hiking in the morning while also enjoying hiking in the evening; these preferences are not mutually exclusive.",
+        "correct": true
+      },
+      {
+        "content_a": "I like jazz music",
+        "content_b": "I enjoy classical music",
+        "gold": false,
+        "predicted_conflict": false,
+        "confidence": 0.9,
+        "explanation": "A reasonable person can enjoy both jazz and classical music simultaneously; these preferences do not contradict each other.",
+        "correct": true
+      },
+      {
+        "content_a": "I prefer tea over coffee",
+        "content_b": "I enjoy hot beverages in the morning",
+        "gold": false,
+        "predicted_conflict": false,
+        "confidence": 0.9,
+        "explanation": "Both memories can coexist; preferring tea does not negate the enjoyment of hot beverages.",
+        "correct": true
+      },
+      {
+        "content_a": "I love cooking Italian food",
+        "content_b": "I enjoy trying new restaurants",
+        "gold": false,
+        "predicted_conflict": false,
+        "confidence": 0.9,
+        "explanation": "Both memories can coexist; loving to cook Italian food does not contradict enjoying trying new restaurants.",
+        "correct": true
+      },
+      {
+        "content_a": "I like reading science fiction",
+        "content_b": "I enjoy fantasy novels too",
+        "gold": false,
+        "predicted_conflict": false,
+        "confidence": 0.9,
+        "explanation": "Both memories express a preference for different genres of literature, which can coexist without contradiction.",
+        "correct": true
+      },
+      {
+        "content_a": "I prefer cycling for exercise",
+        "content_b": "I enjoy swimming at the pool",
+        "gold": false,
+        "predicted_conflict": false,
+        "confidence": 0.9,
+        "explanation": "Both memories express different preferences for exercise activities and do not contradict each other.",
+        "correct": true
+      },
+      {
+        "content_a": "I work from home",
+        "content_b": "I like remote work arrangements",
+        "gold": false,
+        "predicted_conflict": false,
+        "confidence": 0.9,
+        "explanation": "Both memories can coexist; working from home is a type of remote work arrangement, and liking remote work does not contradict working from home.",
+        "correct": true
+      },
+      {
+        "content_a": "I have two dogs",
+        "content_b": "I love animals and pets",
+        "gold": false,
+        "predicted_conflict": false,
+        "confidence": 0.9,
+        "explanation": "Both memories can coexist without contradiction; loving animals and pets does not conflict with having two dogs.",
+        "correct": true
+      },
+      {
+        "content_a": "My favorite bar is The Blue Moon in Shanghai",
+        "content_b": "I moved to Beijing last month",
+        "gold": true,
+        "predicted_conflict": false,
+        "confidence": 0.9,
+        "explanation": "A person can have a favorite bar in one city while living in another city; these memories do not contradict each other.",
+        "correct": false
+      },
+      {
+        "content_a": "I always eat at my favorite restaurant in New York",
+        "content_b": "I've relocated to London",
+        "gold": true,
+        "predicted_conflict": true,
+        "confidence": 0.9,
+        "explanation": "If the person has relocated to London, it is unlikely they can always eat at their favorite restaurant in New York, creating a strong inconsistency.",
+        "correct": true
+      },
+      {
+        "content_a": "I go to the local gym on Main Street",
+        "content_b": "I moved to a different neighborhood",
+        "gold": true,
+        "predicted_conflict": true,
+        "confidence": 0.9,
+        "explanation": "If the person moved to a different neighborhood, it is likely that they no longer go to the local gym on Main Street, creating a strong inconsistency.",
+        "correct": true
+      }
+    ]
+  }
+}

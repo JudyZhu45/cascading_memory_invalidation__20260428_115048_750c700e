@@ -1,0 +1,36 @@
+{
+  "quiet_phrases": [
+    "I prefer quiet evenings at home",
+    "I love spending time in peaceful environments",
+    "I enjoy solitude and quiet activities",
+    "I like reading quietly by myself",
+    "I prefer calm, low-key activities",
+    "I've been enjoying some alone time lately",
+    "I find loud environments draining",
+    "I like tranquil spaces and silence",
+    "I've been meditating and enjoying peaceful moments",
+    "I prefer a calm and quiet lifestyle"
+  ],
+  "noisy_phrases": [
+    "I love going to bars and clubs",
+    "I enjoy loud parties and social gatherings",
+    "I like nightlife and going out dancing",
+    "I love crowded concerts and festivals",
+    "I enjoy lively bars with loud music",
+    "I like socializing at noisy venues",
+    "I love a good bar scene with friends",
+    "I enjoy the energy of crowded nightclubs",
+    "I love karaoke nights at loud bars",
+    "I like being in the center of the action at parties"
+  ],
+  "result": {
+    "mean_cross_distance": 0.6419345140457153,
+    "min_cross_distance": 0.3575255870819092,
+    "max_cross_distance": 0.8899213075637817,
+    "std_cross_distance": 0.10101616382598877,
+    "mean_within_quiet_distance": 0.5135120153427124,
+    "fraction_above_threshold_03": 1.0,
+    "fraction_above_threshold_05": 0.95,
+    "h2a_supported": true
+  }
+}

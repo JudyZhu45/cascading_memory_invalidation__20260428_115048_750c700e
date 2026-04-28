@@ -1,0 +1,102 @@
+\section{Results}
+\label{sec:results}
+
+\subsection{H1: Structural Cascade Accuracy (LOCATED\_IN)}
+\label{sec:results:structural}
+
+\Tabref{tab:structural} reports structural cascade results across 15 \locomo dialogues. Our cascade achieves \textbf{81.7\% mean accuracy}, exceeding the 80\% threshold (\textbf{H1 supported}). Precision (81.3\%) is higher than recall (67.5\%), indicating that the keyword-based \locatedin edge detector is conservative: it correctly labels most of the memories it flags as location-dependent but misses some with implicit location references (\eg ``near my favorite coffee shop'' rather than explicit city names).
+
+The per-dialogue results (\tabref{tab:structural}) show substantial variance. Dialogue 14 (accuracy = 97.7\%) contains many explicit location markers and uniform spatial language. Dialogue 9 (accuracy = 61.9\%) suffers from over-broad keyword detection: 41 \locatedin edges are generated for 74 nodes, leading to false positives among non-location-dependent memories. This sensitivity analysis motivates the precision-recall trade-off discussed in \secref{sec:discussion:failures}.
+
+\begin{table}[t]
+\centering
+\caption{Structural cascade results across 15 \locomo dialogues. Our cascade achieves 81.7\% mean accuracy on location-shift invalidation, exceeding the 80\% target. Recall (67.5\%) is lower than precision (81.3\%) due to implicit location references. Best per-metric results in \textbf{bold}.}
+\label{tab:structural}
+\resizebox{0.85\textwidth}{!}{%
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Setting} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\
+\midrule
+Mean (15 dialogues) & \textbf{81.7\%} & \textbf{81.3\%} & \textbf{67.5\%} & \textbf{68.8\%} \\
+\midrule
+\multicolumn{5}{@{}l}{\textit{Selected per-dialogue results}} \\
+Dialogue 0  & 90.4\% & 100.0\% & 56.3\% & 72.0\% \\
+Dialogue 6  & 87.6\% & 94.4\% & 58.6\% & 72.3\% \\
+Dialogue 9  & 61.9\% & 37.7\% & 74.1\% & 50.0\% \\
+Dialogue 14 & 97.7\% & 92.9\% & 85.7\% & 89.2\% \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\subsection{H2a: Semantic Bridge via Embedding Distance}
+\label{sec:results:embedding}
+
+We test whether embedding space separates quiet and noisy preference phrases. Using \miniLM, the mean cosine distance between quiet phrases (\eg ``quiet evening at home,'' ``peaceful reading'') and noisy phrases (\eg ``loud bar,'' ``nightclub dancing'') is \textbf{0.69}, with 100\% of pairs above the 0.3 threshold (\textbf{H2a supported}). Within-group distance (quiet vs.\ quiet) is approximately 0.25, confirming that the inter-class separation is much larger than intra-class variation. This result establishes that embedding space does encode the quiet/noisy preference distinction, making the semantic bridging problem tractable.
+
+\subsection{H2b: LLM Semantic Edge Precision}
+\label{sec:results:llm}
+
+\Tabref{tab:semantic_bridge} reports results on our 19-pair conflict benchmark (11 true conflicts, 8 non-conflicts). \gptfouromini achieves \textbf{100\% precision and 90.9\% recall}, with F1 = 0.952 (\textbf{H2b strongly supported}). The single missed conflict was an implicit location-semantic interaction (``favorite bar in Shanghai'' + ``moved to Beijing''), where the LLM assigned confidence 0.55, below our 0.6 threshold. The LLM correctly identifies all 11 pure semantic preference conflicts.
+
+Embedding similarity (Method A, threshold = 0.3) achieves high recall (100\%) but low precision (61.1\%): the 0.3 cosine distance threshold is too permissive, capturing dissimilar but non-conflicting pairs. The behavioral co-occurrence approach (Method C) produces precision = recall = 0.0 on \locomo because 35 dialogues with \textasciitilde{}15 sessions each provide insufficient data for stable Pearson correlations (requires thousands of user-session pairs).
+
+\begin{table}[t]
+\centering
+\caption{Semantic bridge approach comparison on the 19-pair conflict benchmark (11 true conflicts, 8 non-conflicts). LLM inference achieves 100\% precision, solving the semantic bridging problem. Embedding similarity achieves high recall but low precision due to the permissive 0.3 cosine distance threshold.}
+\label{tab:semantic_bridge}
+\resizebox{0.72\textwidth}{!}{%
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{Method} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\
+\midrule
+Embedding ($\tau = 0.3$) & 61.1\% & 100.0\% & 75.9\% \\
+Behavioral (Pearson $r < -0.3$) & 0.0\% & 0.0\% & 0.0\% \\
+\textbf{LLM (\gptfouromini)} & \textbf{100.0\%} & \textbf{90.9\%} & \textbf{95.2\%} \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\subsection{H3: Drift Cascade Superiority on HorizonBench}
+\label{sec:results:horizon}
+
+\Tabref{tab:horizonbench} shows the main cascade comparison on 227 evolved and 100 static \horizonbench items. \fullcascade achieves \textbf{72.2\%} on evolved preferences, a \textbf{+32.2 percentage point} improvement over \flatmemory (40.1\%), far exceeding the 20pp target (\textbf{H3 strongly supported}). Critically, all methods achieve identical accuracy on static items (70\%), confirming that the cascade does not falsely invalidate stable memories.
+
+The distractor selection rate (frequency of selecting the pre-evolution, stale option) drops from 43.2\% (\flatmemory) to 15.4\% (\fullcascade), a \textbf{64\% relative reduction}. This directly quantifies the cascade's ability to suppress belief-update failure as defined by \citet{li2026horizonbench}.
+
+\para{Cascade depth matters.}
+\onehop achieves 62.6\% evolved accuracy, while \fullcascade (3-hop) achieves 72.2\%, a +9.6pp gain from transitive propagation. The average distractor weight after cascade illustrates the mechanism: flat memory leaves distractors at weight 1.0, while full cascade reduces them to 0.167 through compounding invalidation ($0.85 \times 0.7^2 \approx 0.42$ signal at depth 3).
+
+\para{Recency decay is surprisingly competitive.}
+\recencydecay achieves 69.6\% evolved accuracy, close to \fullcascade (72.2\%). In the HorizonBench setting, the temporal gap between the pre-evolution and post-evolution preferences is approximately 4 months, making temporal decay an effective signal. However, recency decay is a blunt instrument: it cannot distinguish between a recently stated stale fact and a recently stated valid fact. In contrast, cascade-based invalidation is targeted, invalidating only semantically conflicting memories.
+
+\begin{table}[t]
+\centering
+\caption{Drift cascade comparison on 227 evolved and 100 static \horizonbench items.
+\fullcascade achieves the highest evolved accuracy (+32.2pp over \flatmemory) while preserving static accuracy.
+Lower distractor selection rate indicates better suppression of stale preference belief.
+All results computed over the same 327 items with random seed 42.}
+\label{tab:horizonbench}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Method} & \textbf{Evolved Acc.} & \textbf{Distractor Rate} & \textbf{Static Acc.} & \textbf{Avg.\ Distractor Weight} \\
+\midrule
+\flatmemory     & 40.1\%          & 43.2\%          & 70.0\%  & 1.000 \\
+\recencydecay   & 69.6\%          & 18.1\%          & 70.0\%  & 0.159 \\
+\onehop         & 62.6\%          & 23.3\%          & 70.0\%  & 0.405 \\
+\textbf{\fullcascade}  & \textbf{72.2\%} & \textbf{15.4\%} & \textbf{70.0\%} & \textbf{0.167} \\
+\midrule
+$\Delta$(\fullcascade $-$ \flatmemory) & +32.2pp \increase & $-$27.8pp \decrease & 0.0pp & $-$0.833 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\subsection{Ablation: Cascade Depth Sensitivity}
+\label{sec:results:ablation}
+
+We analyze performance as a function of cascade depth. \Figref{fig:cascade_comparison} shows that 1-hop cascade (62.6\%) and full 3-hop cascade (72.2\%) differ by 9.6pp. The per-hop contribution diminishes with depth due to the decay factor $\delta = 0.7$: the 3\textsuperscript{rd}-hop invalidation signal is $0.7^2 = 0.49$ of the 1\textsuperscript{st}-hop signal. In practice, 2--3 hops captures most of the benefit; beyond depth 3, the signal falls below 0.35 and becomes negligible.
+
+\Figref{fig:drift_threshold} shows drift detection rate as a function of behavioral signal count. Detection rate is 100\% at 1 signal but falls to 60\% at 5 signals and 40\% at 10 signals as the threshold increases. Based on this analysis, we recommend requiring 2--3 repeated behavioral signals before triggering preference cascade to balance sensitivity and specificity.

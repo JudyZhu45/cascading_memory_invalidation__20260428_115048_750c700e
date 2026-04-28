@@ -1,0 +1,25 @@
+\section{Introduction}
+\label{sec:intro}
+
+Imagine a user who moves from Shanghai to Beijing and then asks their AI assistant for a dinner recommendation. A well-designed assistant should not suggest their old favorite restaurant in Shanghai. Yet current memory systems — including MemGPT~\cite{packer2024memgpt}, Mem0, and PersonaMem~\cite{jiang2025personamem} — store facts as flat key-value pairs and update memories only when the user explicitly says ``I no longer like that.'' Without explicit retraction, stale facts persist indefinitely, and AI assistants continue making recommendations based on outdated user states.
+
+This failure is not limited to explicit location changes. Consider a user who has gradually drifted toward quiet evenings at home over the past few months. No single conversation contains an explicit statement like ``I no longer enjoy bars.'' Instead, the drift is revealed through repeated mentions of ``quiet evenings,'' ``reading at home,'' and ``early nights.'' An assistant that stores only stated facts will miss this drift entirely, continuing to recommend bars and social events the user has outgrown.
+
+{\bf What makes memory invalidation hard?} Two challenges combine to make this difficult. First, a \textit{structural challenge}: when the root context changes (the user moves cities), the system must identify all memories that depended on that context. Second, a \textit{semantic challenge}: the system must establish a conflict relationship between ``prefers quiet'' and ``likes bars'' without the user ever making this connection explicit. We call the second challenge the \textit{semantic bridging problem}.
+
+\para{Existing work falls short on both counts.} \horizonbench~\cite{li2026horizonbench} demonstrates that all 25 evaluated frontier models suffer from belief-update failure, selecting stale pre-evolution preferences as answers more than 25\% of the time. LoCoMo~\cite{maharana2024locomo} provides real-world conversational data for long-term memory evaluation but lacks cascade invalidation methodology. PAMU~\cite{sun2025pamu} addresses preference drift detection on LoCoMo using sliding-window statistics but does not propagate invalidation through a graph. RippleEdits~\cite{cohen2023rippleedits} evaluates knowledge editing cascades but focuses on factual encyclopedic knowledge, not user preferences. No prior work evaluates cascading invalidation on \textit{real} conversational data using both structural and semantic conflict edges.
+
+\para{We propose cascading memory invalidation via typed dependency edges.} We model each user's memories as nodes in a directed graph $\gG = (\gV, \gE)$ with two typed edge classes: \locatedin edges (from a root location node to location-dependent memory nodes) and directed \conflictswith edges (from a current preference node to an outdated one). When a root context changes, a weighted BFS propagation automatically downweights all transitively dependent memories, while leaving unrelated memories untouched.
+
+The core novel insight is edge \textit{directionality}: \conflictswith edges must flow \textbf{from current to old}, not bidirectionally. We empirically demonstrate that bidirectional edges cause mutual cancellation, reducing full-cascade performance to the flat-memory baseline (41.8\% vs.\ 72.2\% with directed edges). This failure mode has not been documented in prior work.
+
+\para{Our results show that all four research hypotheses are supported.} We evaluate on \locomo (35 real multi-session dialogues) and \horizonbench (4,245 preference evolution items). Structural cascade via \locatedin edges achieves 81.7\% accuracy on location-shift events. LLM-based \conflictswith edge detection achieves 100\% precision and 90.9\% recall. Full transitive cascade improves evolved-preference accuracy by +32.2 percentage points over flat memory (72.2\% vs.\ 40.1\%), and reduces stale-preference selection from 43.2\% to 15.4\%.
+
+Our contributions are:
+
+\begin{itemize}[leftmargin=*,itemsep=0pt,topsep=0pt]
+    \item We propose a directed memory graph with typed \locatedin and \conflictswith edges that enable automated cascading invalidation without explicit user retraction.
+    \item We demonstrate that \gptfouromini solves the semantic bridging problem with 100\% precision at memory write time, establishing \conflictswith edges from world knowledge about preference conflicts.
+    \item We identify and empirically characterize \textit{bidirectional edge cancellation} as a critical failure mode in graph-based memory invalidation, providing a concrete design principle for future systems.
+    \item We conduct comprehensive evaluations on \locomo and \horizonbench, showing +32.2pp improvement over flat memory and 64\% relative reduction in stale-preference selection rate.
+\end{itemize}
