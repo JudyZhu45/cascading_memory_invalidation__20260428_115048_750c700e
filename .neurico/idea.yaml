@@ -1,0 +1,245 @@
+idea:
+  title: Cascading Memory Invalidation in User Memory Graphs
+  domain: artificial_intelligence
+  hypothesis: "A memory graph with typed dependency edges can propagate invalidation\n\
+    signals to dependent memories without explicit user retraction, in two\nscenarios:\n\
+    \n(1) Explicit context shift: when a root node changes (e.g., user moves\n   \
+    \ city), all memories that are only relevant under that root context\n    should\
+    \ be automatically down-weighted via structural graph edges\n    (LOCATED_IN),\
+    \ even if never mentioned again.\n\n(2) Implicit preference drift: when a user's\
+    \ stated preference shifts\n    (e.g., \"I've been enjoying quiet time lately\"\
+    ), memories linked to\n    conflicting activities should decay \u2014 BUT this\
+    \ requires first solving\n    a semantic bridging problem: the system must infer\
+    \ that \"preferring\n    quiet\" conflicts with \"going to bars\" without any\
+    \ explicit connection\n    stated by the user.\n\nThe core open question is how\
+    \ CONFLICTS_WITH edges are established:\npurely structural edges (LOCATED_IN)\
+    \ are straightforward, but semantic\nconflict edges require either (a) LLM inference\
+    \ at memory write time,\nor (b) behavioral co-occurrence signals across sessions.\n"
+  background:
+    description: "Current memory systems (MemGPT, Mem0, PersonaMem) store facts as\n\
+      flat key-value pairs or unstructured text and update only on explicit\nretraction.\
+      \ This creates two failure modes:\n\nFailure A \u2014 Location mismatch:\n \
+      \ A user who moves from Shanghai to Beijing continues to receive\n  Shanghai\
+      \ bar recommendations because the system has no mechanism\n  to invalidate location-dependent\
+      \ memories when the root location\n  changes.\n\nFailure B \u2014 Implicit drift\
+      \ blindness:\n  A user who drifts toward quiet preferences is still recommended\n\
+      \  their old bar even after multiple sessions of choosing quiet\n  activities,\
+      \ because no explicit \"I no longer like bars\" was stated.\n\nFailure B introduces\
+      \ the semantic bridging problem: to build the\nCONFLICTS_WITH edge between \"\
+      prefers quiet\" and \"likes bars,\" the\nsystem needs background knowledge that\
+      \ bars are typically loud/social\nenvironments. This knowledge is not present\
+      \ in the user's conversation\nhistory \u2014 it must come from an external source\
+      \ (LLM inference, a\nsemantic ontology, or behavioral co-occurrence statistics).\n\
+      \nThis experiment uses LOCOMO, a real long-term conversational dataset,\nto\
+      \ ground the research in realistic multi-session interactions rather\nthan purely\
+      \ synthetic scenarios.\n"
+    papers:
+    - url: https://arxiv.org/abs/2402.17753
+      description: 'LoCoMo: Evaluating Very Long-Term Conversational Memory (ACL 2024)'
+    - url: https://arxiv.org/abs/2310.09104
+      description: Building Long-Term Conversational Datasets (LoCoMo v1)
+    - url: https://arxiv.org/abs/2310.08560
+      description: 'MemGPT: Towards LLMs as Operating Systems'
+    - url: https://arxiv.org/abs/2512.06688
+      description: 'PersonaMem-v2: Personalized Intelligence via Agentic Memory'
+    - url: https://arxiv.org/abs/2604.17283
+      description: 'HorizonBench: Long-Horizon Personalization with Evolving Preferences'
+    datasets:
+    - name: LoCoMo
+      source: huggingface:snap-research/locomo
+      description: 'Long-term conversational memory benchmark from Snap Research (ACL
+        2024).
+
+        Contains multi-session dialogues (up to 35 sessions per user) with
+
+        question-answer pairs that probe memory across sessions. Provides
+
+        realistic cascades: users mention moving, changing jobs, dropping
+
+        hobbies across sessions. Ground-truth answers reveal what should
+
+        and should not be recommended at each point in time.
+
+        '
+      size: ~600 conversations, 300K tokens average per user
+  methodology:
+    approach: "Three-part experiment:\n  Part 1: Structural cascade (LOCATED_IN) \u2014\
+      \ straightforward, no semantic bridge needed\n  Part 2: Semantic bridge problem\
+      \ \u2014 how to establish CONFLICTS_WITH edges\n  Part 3: Drift cascade evaluation\
+      \ using LoCoMo sessions\n"
+    part1_structural_cascade: 'Extract location-shift events from LoCoMo conversations
+      where a user
+
+      explicitly states they moved, changed residence, or are "now in [city]."
+
+      Build a memory graph where venue/activity memories are linked to their
+
+      location via LOCATED_IN edges.
+
+
+      Measure: after the location-shift utterance, does the system stop
+
+      recommending location-dependent items in subsequent sessions?
+
+
+      Baseline: flat memory (no edges) vs graph cascade.
+
+      '
+    part2_semantic_bridge: "This is the open research question. Three approaches to\
+      \ building\nCONFLICTS_WITH edges are tested and compared:\n\nApproach A \u2014\
+      \ LLM inference at write time:\n  When a new memory node is created (e.g., \"\
+      user likes bars\"),\n  query an LLM: \"What preferences would conflict with\
+      \ this?\"\n  Store the LLM-generated conflict tags as edges.\n  Problem: requires\
+      \ LLM API call per memory write; hallucination risk.\n\nApproach B \u2014 Embedding\
+      \ similarity on activity attributes:\n  Represent each memory node as a vector\
+      \ (using sentence-transformers,\n  CPU-runnable). Compute cosine similarity\
+      \ between activity embeddings.\n  Hypothesis: \"quiet cafe\" and \"bar\" are\
+      \ far apart in embedding space;\n  \"prefers quiet\" is close to \"quiet cafe\"\
+      \ and far from \"bar.\"\n  CONFLICTS_WITH edges are created when similarity(new_pref,\
+      \ old_venue)\n  falls below a threshold.\n  Problem: \"quiet\" and \"bar\" may\
+      \ not be far apart without context.\n  This is an empirical question this experiment\
+      \ will test.\n\nApproach C \u2014 Behavioral co-occurrence (no LLM needed):\n\
+      \  Within LoCoMo's multi-session data, measure which activities\n  a user stops\
+      \ choosing after expressing a new preference.\n  Activities that reliably co-disappear\
+      \ form implicit conflict pairs.\n  Problem: requires sufficient behavioral history;\
+      \ cold-start failure.\n\nEvaluation: for each approach, measure edge precision\n\
+      (does CONFLICTS_WITH connect genuinely conflicting concepts?)\nagainst human-annotated\
+      \ ground truth from LoCoMo QA pairs.\n"
+    part3_drift_cascade: "Using edges established in Part 2, run the full cascade:\n\
+      \  - User emits N preference drift signals (e.g., mentions quiet, calm,\n  \
+      \  solitude across multiple sessions)\n  - After N signals, trigger cascade\
+      \ from new preference node\n  - Measure whether stale conflicting memories are\
+      \ down-weighted\n  - Evaluate recommendation correctness on LoCoMo held-out\
+      \ QA pairs\n"
+    steps:
+    - Download LoCoMo dataset from HuggingFace (snap-research/locomo)
+    - Parse conversations into session-level memory graphs (networkx)
+    - Annotate location-shift events and preference-drift events in LoCoMo
+    - 'Part 1: implement and evaluate LOCATED_IN structural cascade'
+    - 'Part 2: implement all three CONFLICTS_WITH edge-building approaches'
+    - 'Part 2: evaluate edge quality against LoCoMo QA ground truth'
+    - 'Part 3: run drift cascade with best-performing edge approach'
+    - Compare flat memory vs 1-hop vs full transitive cascade
+    - 'Analyze failure cases: when does semantic bridging fail?'
+    memory_graph_schema: "Node:\n  id: str\n  content: str          # e.g., \"user\
+      \ likes Bar X in Jing'an, Shanghai\"\n  weight: float         # [0, 1], starts\
+      \ at 1.0\n  category: str         # LOCATION | PREFERENCE | VENUE | ACTIVITY\n\
+      \  created_at: int       # session index\n\nEdge:\n  source_id: str\n  target_id:\
+      \ str\n  edge_type: str        # LOCATED_IN | PREFERENCE_FOR | CONFLICTS_WITH\n\
+      \  strength: float       # [0, 1]\n\nCascade rule:\n  new_weight(child) = parent_weight\
+      \ * edge_strength * child_weight\n"
+    example_scenario: "User memory graph (Shanghai user, 5 sessions):\n  [Shanghai,\
+      \ weight=1.0] --LOCATED_IN(0.9)--> [Pudong, weight=1.0]\n  [Shanghai, weight=1.0]\
+      \ --LOCATED_IN(0.9)--> [Disney Shanghai, weight=1.0]\n  [Shanghai, weight=1.0]\
+      \ --LOCATED_IN(0.9)--> [Bar X Jing'an, weight=1.0]\n  [likes bars, weight=1.0]\
+      \ --PREFERENCE_FOR(0.8)--> [Bar X Jing'an, weight=1.0]\n  [prefers quiet, weight=0.0]\
+      \ --CONFLICTS_WITH(?)--> [likes bars, weight=1.0]\n\nSession 6: \"I moved to\
+      \ Beijing last month.\"\n  LOCATED_IN cascade: Shanghai weight \u2192 0.1\n\
+      \  Pudong weight \u2192 0.09, Disney weight \u2192 0.09, Bar X weight \u2192\
+      \ 0.09\n  Flat memory: recommends Bar X \u2190 WRONG\n\nSessions 7-9: user mentions\
+      \ quiet walks, home cooking, reading.\n  Behavioral signals accumulate on [prefers\
+      \ quiet].\n  CONFLICTS_WITH edge (if established): [likes bars] weight decays.\n\
+      \  Semantic bridge question: how did the system know to create this edge?\n"
+    research_questions:
+    - 'RQ1: Does structural cascade (LOCATED_IN) reliably invalidate location-dependent
+      memories after an explicit move event?'
+    - 'RQ2: Which of the three semantic bridging approaches (LLM, embedding, behavioral)
+      produces the highest-precision CONFLICTS_WITH edges?'
+    - 'RQ3: Is embedding similarity sufficient to detect preference conflicts without
+      an LLM? (key CPU-only question)'
+    - 'RQ4: How many drift signals are needed before cascade should trigger? (threshold
+      sensitivity)'
+    - 'RQ5: Does transitive propagation (2+ hops) improve correctness over 1-hop?'
+    baselines:
+    - 'Flat memory: no edges, updates only on explicit retraction'
+    - 'Recency decay: memory weight decays with time since last mention'
+    - 1-hop graph cascade (no transitive propagation)
+    - Full transitive graph cascade (proposed)
+  constraints:
+    compute: cpu_only
+    time_limit: 5400
+    memory: 16GB
+    budget: 5
+    dependencies:
+    - datasets
+    - networkx
+    - sentence-transformers
+    - numpy
+    - pandas
+    - matplotlib
+    - scikit-learn
+    - scipy
+  expected_outputs:
+  - type: data
+    format: json
+    description: LoCoMo sessions parsed into memory graphs with annotated cascade
+      events
+  - type: metrics
+    format: json
+    fields:
+    - method
+    - structural_cascade_accuracy
+    - semantic_edge_precision
+    - drift_cascade_accuracy
+    - false_invalidation_rate
+    - recommendation_correctness
+    description: Per-method evaluation on LoCoMo held-out QA pairs
+  - type: visualization
+    format: png
+    description: 'fig1: Example memory graph before/after location-shift cascade (networkx)
+
+      fig2: Semantic bridge approach comparison (edge precision bar chart)
+
+      fig3: Drift cascade accuracy vs number of behavioral signals (threshold curve)
+
+      fig4: Cascade accuracy by method (structural vs drift, flat vs graph)
+
+      '
+  - type: report
+    format: markdown
+    description: "Analysis of the semantic bridging problem:\n- When does embedding\
+      \ similarity successfully detect conflicts?\n- Where does it fail (e.g., \"\
+      quiet\" vs \"bar\" \u2014 are these far in embedding space)?\n- What is the\
+      \ minimum behavioral signal count needed for reliable drift detection?\n- Failure\
+      \ case taxonomy for both cascade types\n"
+  evaluation_criteria:
+  - Structural cascade achieves > 80% accuracy on LoCoMo location-shift events
+  - At least one semantic bridge approach achieves edge precision > 60%
+  - 'Embedding approach tested: report whether cosine distance between quiet/bar preference
+    embeddings exceeds 0.3 (empirical answer to RQ3)'
+  - Drift cascade outperforms flat memory by at least 20 percentage points on recommendation
+    correctness
+  - Failure analysis covers at least 3 distinct failure modes for semantic bridging
+  metadata:
+    author: judy
+    tags:
+    - memory-graph
+    - cascading-invalidation
+    - preference-drift
+    - context-shift
+    - semantic-bridging
+    - locomo
+    - conversational-ai
+    - personalization
+    priority: high
+    notes: 'The semantic bridging problem (RQ3) is the most uncertain part of this
+
+      experiment. It is intentionally left as an open empirical question rather
+
+      than assumed to be solvable. The experiment is designed to produce a
+
+      clear answer even if the answer is "embedding similarity is insufficient
+
+      for preference conflict detection without LLM inference."
+
+
+      Budget $0 and CPU-only: sentence-transformers runs locally; LoCoMo is
+
+      freely available on HuggingFace; no paid API calls required.
+
+      '
+    idea_id: cascading_memory_invalidation__20260428_115048_750c700e
+    created_at: '2026-04-28T11:50:48.855767'
+    status: submitted
+    github_repo_name: cascading_memory_invalidation__20260428_115048_750c700e
+    github_repo_url: https://github.com/JudyZhu45/cascading_memory_invalidation__20260428_115048_750c700e
